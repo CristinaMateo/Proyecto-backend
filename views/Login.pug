@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body
+        header
+            h1 CoffeeMovie
+        main
+            form(action="POsT")
+                fieldset 
+                    h4 Log in to our site
+                    label Email (for="email")
+                    input(type="email", placeholder="Introduce email", name="email", id="log_mail")
+                    label Password (for="password")
+                    input(type="text", placeholder="Introduce password", name="password", id="log_pass")
+                    input(type="submit" value="Log in" id="log")
+
+            p(id="msgerr")
+
+            h5 If you are not a member of out comunity you can also: 
+
+            button(id="sign-button") Sign up
+            button(id="guest") Continue as guest
+        footer
