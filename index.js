@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-||||||| eb37a5c
-console.log("VAya tela");
-=======
 const express = require('express');
 
 const app = express();
@@ -52,4 +48,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
->>>>>>> 7fc62bd490be192e290eae37c0d4b5e6f7079de6
