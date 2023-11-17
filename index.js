@@ -23,14 +23,18 @@ app.set('views','./views');
 
 // const ? = require('./routes/');
 // const ! = require('./routes/');
+const searchRoutes = require("./routes/search.routes.js")
 
 //ruta api sin el /api seria para la web
 // app.use('/api', ?);
 // app.use('/api', !);
+app.use("/search", searchRoutes)
 
 app.get('/', (req, res) => {
     res.send('Home')
 });
+
+
 
 // app.get('/first_template', function(req, res){
 //     res.render('first_view.pug');
