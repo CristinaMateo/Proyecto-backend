@@ -6,15 +6,14 @@ const showSearchBar = (req, res) => {
     res.render("search-bar")
 }
 
+// Controlador para el formulario tipo POST
 const searchFilmsByTitle = (req, res) => {
-    //Lo que ocurre cuando se envía el formulario (tipo POST):
     const title = req.body.title;
-    res.redirect(`/search/${title}`); //Redirigimos a search/:title
-    
+    res.redirect(`/search/${title}`); //Redirigimos a search/:title    
 }
 
+// Controlador para el [GET] en /search/:title
 const showFilms = async (req, res) => {
-    //Lo que ocurre cuando llegamos a film/"title":
     const title = req.params.title;
     console.log(title)
     res.render("film-list", { title })
