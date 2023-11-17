@@ -5,7 +5,7 @@ const port = 3000;
 
 //habilita recepción objetos
 app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 //middlewares
 // const $ = require('./middlewares/');

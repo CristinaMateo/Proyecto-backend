@@ -9,8 +9,8 @@ html(lang="en")
             img(src="" id="app-logo")
             article(id="burger-menu")
         main
-            form(id="search-form")      
-                label(for="search-bar") Search for a movie:
-                input(type="text" id="search-bar" name="search-bar" placeholder="Your movie here...")
-                button(type="submit" value="Search") Search
+            form(action="/search/" method="post" id="search-form")      
+                label(for="title") Search for a movie:
+                input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+                button(type="submit") Search
             img(src="", alt="" id="color-img")
