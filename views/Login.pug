@@ -6,9 +6,9 @@ html(lang="en")
         title Document
     body
         header
-            h1 CoffeeMovie
+            h1(id="top") CoffeeMovie
         main
-            form(action="POsT")
+            form(action="#" method="POST")
                 fieldset 
                     h4 Log in to our site
                     label Email (for="email")
@@ -23,4 +23,22 @@ html(lang="en")
 
             button(id="sign-button") Sign up
             button(id="guest") Continue as guest
+
+            form(id ="form1" action="#" method="POST")
+                h3 Create an account 
+                fieldset
+                    label(for="email") Email:
+                    input(type="email" id="email" name="email" placeholder="Introduce email...")
+                    label(for="signup-user") Username:
+                    input(type="text" id="signup-user" name="signup-user" placeholder ="Username")
+                    label(for="pass") Password
+                    input(type="password" id="pass" name="pass" placeholder="Introduce password...")
+                    label(for="pass2") Repeat password:
+                    input(type="password" id="pass2" name="pass2" placeholder="Repite password...")
+                    label(for="signup-picture") Picture:
+                    input(type="file" id="signup-picture" accept="image/*" name="signup-picture")
+                    input(type="submit" value="Create" id="create")
+
         footer
+            div(class="top")
+                a(href="#top") Back to top
