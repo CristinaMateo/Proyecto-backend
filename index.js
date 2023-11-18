@@ -28,7 +28,6 @@ app.use('/', filmDetailRoutes);
 //app.use('/',users_sqlRoutes);
 //app.use('/', favmovie_sqlRoutes);
 
-
 //configuración plantilla pug
 app.set('view engine', 'pug');
 app.set('views','./views');
