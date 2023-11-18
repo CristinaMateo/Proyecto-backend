@@ -27,7 +27,19 @@ DELETE FROM users
 WHERE email =$1;
 
 
--- Insertar datos en tabla favmovies
-INSERT INTO favmovies(user_id,title,genre,posterimg)
-VALUES
-('1','La revolucion de los gatitos','terror', 'https://acortar.link/dUkT6z');
+-- Insertar datos en tabla favmovies (añadir una peli a favoritos)
+INSERT INTO favmovies(title,genre, posterimg, user_id) 
+    VALUES ($1, $2,$3,
+    (SELECT user_id FROM users WHERE email=$4))
+
+
+-- mostrar todas las pelis favoritas de un usuario
+SELECT m.title, m.genre, m.posterimg
+FROM favmovies AS m
+INNER JOIN users AS u
+ON m.user_id=u.user_id
+WHERE u.email = $1;
+
+--eliminar una película de favoritos
+DELETE FROM favmovies
+    WHERE title =$1;
