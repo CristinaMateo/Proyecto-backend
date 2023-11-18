@@ -1,5 +1,4 @@
 const express = require('express');
-const pug = require('pug')
 
 
 const app = express();
@@ -18,10 +17,12 @@ app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 
 //rutas
 const loginRoutes = require("./routes/login.routes")
+const filmDetailRoutes = require("./routes/filmDetail.route")
 
 
 //Rutas Template
 app.use('/', loginRoutes);
+app.use('/', filmDetailRoutes)
 
 
 //configuración plantilla pug

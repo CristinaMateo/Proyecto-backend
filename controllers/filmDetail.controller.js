@@ -3,5 +3,5 @@ const getfilmDetail = (req, res) => {
   }
 
   module.exports = {
-  getFilmDetail
+  getfilmDetail
   }
