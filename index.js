@@ -17,12 +17,16 @@ app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 
 //rutas
 const loginRoutes = require("./routes/login.routes")
-const filmDetailRoutes = require("./routes/filmDetail.route")
+const filmDetailRoutes = require("./routes/filmDetail.routes")
+//const users_sqlRoutes = require("./routes/users_sql.routes")
+//const favmovie_sqlRoutes = require("./routes/favmovie_sql.routes")
 
 
 //Rutas Template
 app.use('/', loginRoutes);
-app.use('/', filmDetailRoutes)
+app.use('/', filmDetailRoutes);
+//app.use('/',users_sqlRoutes);
+//app.use('/', favmovie_sqlRoutes);
 
 
 //configuración plantilla pug
