@@ -1,6 +1,6 @@
 apiKey = "1b1d8ac19d2157bc278dad11d08b1894"
 
-const getInfoAPI = async () => {
+const getRecomendationInfoAPI = async () => {
     let response = await fetch (`https://api.themoviedb.org/3/discover/movie?&api_key=${apiKey}`)
     let info = await response.json()
     let image_title = info.results.map((recomendation) => ({
@@ -11,4 +11,4 @@ const getInfoAPI = async () => {
     return image_title
 }
 
-module.exports = {getInfoAPI}
+module.exports = {getRecomendationInfoAPI}

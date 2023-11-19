@@ -3,7 +3,7 @@ const fetchAPI = require("../utils/fetchAPI")
 const recomendation = document.getElementsByClassName("recomendation")
 
 document.addEventListener("DOMContentLoaded", function () {
-    fetchAPI.getInfoAPI
+    fetchAPI.getRecomendationInfoAPI
 
     let randomNumber = Math.floor(Math.random()*20)
     let randomTitle = results[randomNumber].original_title
