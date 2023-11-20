@@ -1,54 +1,52 @@
 const express = require('express');
 
+
 const app = express();
 const port = 3000;
+
 
 //habilita recepción objetos
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//middlewares
-// const $ = require('./middlewares/');
-// const % = require('./middlewares/');
-// const & = require('./middlewares/');
+
+//middelwares
+const error404 = require('./middlewares/error404')
+const morgan = require('./middlewares/morgan')
+
+
+//habilita acceso a public
+app.use(express.static('public'));
+
+
+// Logger
+app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
+
+
+//rutas
+const loginRoutes = require("./routes/login.routes")
+const filmDetailRoutes = require("./routes/filmDetail.routes")
+const searchRoutes = require("./routes/search.routes.js")
+//const users_sqlRoutes = require("./routes/users_sql.routes")
+//const favmovie_sqlRoutes = require("./routes/favmovie_sql.routes")
+
+
+//Rutas Template
+app.use('/', loginRoutes);
+app.use('/', filmDetailRoutes);
+app.use("/search", searchRoutes)
+//app.use('/',users_sqlRoutes);
+//app.use('/', favmovie_sqlRoutes);
+
 
 //configuración plantilla pug
 app.set('view engine', 'pug');
 app.set('views','./views');
 
-//habilita acceso a public
-app.use(express.static('public'));
 
-// app.use('*',%);
-// app.use(&(':method :host :status :param[id] - :response-time ms :body'));
+//para rutas no existentes
+app.use('*',error404)
 
-// const ? = require('./routes/');
-// const ! = require('./routes/');
-const searchRoutes = require("./routes/search.routes.js")
-
-//ruta api sin el /api seria para la web
-// app.use('/api', ?);
-// app.use('/api', !);
-app.use("/search", searchRoutes)
-
-app.get('/', (req, res) => {
-    res.send('Home')
-});
-
-
-
-// app.get('/first_template', function(req, res){
-//     res.render('first_view.pug');
-//   });
-  
-//   app.get('/dynamic_view', function(req, res){
-//     // Llamada a otra API o BBDD
-//     // Procesar datos y preparar objeto
-//     res.render('dynamic', {
-//        name: "The bridge - FullStack", 
-//        url:"https://thebridge.tech"
-//     });
-//   });
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`)
