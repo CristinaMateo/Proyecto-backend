@@ -16,6 +16,7 @@ const searchFilmsByTitle = (req, res) => {
 const showFilms = async (req, res) => {
     const title = req.params.title;
     const movieDetails = await fetch.getMovieDetails(title) // => devuelve [] con resultados
+    console.log(movieDetails)
     res.render("film-list", { movieDetails })
     // const movieDetails = await fetch.getFilm(title);
     // if (movieDetails.Response === "True") {

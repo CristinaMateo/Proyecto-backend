@@ -7,25 +7,23 @@ html(lang="en")
         link(rel="stylesheet", href="style.css")
     body 
 
-        include header .pug
+    include ./header.pug
 
-    main#details_container 
-        img(src="poster", alt="poster")
-        li Name  
-            p pokemon 
-        li Director 
-            p yo 
-        li Date Release
-            p 232323
-        li Genre 
-            p anime 
-
-        p OVERVIEW 
+    main#details_container
+    
+        article(class="detailCard") 
+            img(src="poster", alt="poster")
+            p Name
+            p Runtime
+            p Director
+            p Ratings 
+            p OVERVIEW 
 
 
 
-        button#rating  RATINGS
+        button#rating  OPINIONS
 
         
 include ./footer.pug
 script(src="script.js")
+

@@ -1,8 +1,8 @@
 const searchControllers = require("../controllers/search.controllers.js")
 const router = require('express').Router()
 
-router.get("/", searchControllers.showSearchBar)
-router.post("/", searchControllers.searchFilmsByTitle) 
-router.get("/:title", searchControllers.showFilms)
+router.get("/search", searchControllers.showSearchBar)
+router.post("/search", searchControllers.searchFilmsByTitle) 
+router.get("/search/:title", searchControllers.showFilms)
 
 module.exports = router;

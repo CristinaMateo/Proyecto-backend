@@ -33,7 +33,7 @@ const adminRoutes = require("./routes/adminMongo.routes")
 //Rutas Template
 app.use('/', loginRoutes);
 app.use('/', filmDetailRoutes);
-app.use("/search", searchRoutes)
+app.use('/', searchRoutes)
 //app.use('/',users_sqlRoutes);
 //app.use('/', favmovie_sqlRoutes);
 app.use('/', adminRoutes);
