@@ -18,4 +18,4 @@ const getRecomendation = async () => {
     return result
 }
 
-module.exports() = getRecomendation
+module.exports = {getRecomendation}

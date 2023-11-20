@@ -1,9 +1,16 @@
-const dashboardModel = require('../models/dashboard.model');
+const fetch = require('node-fetch');
+const fetchAPI = require('../utils/fetchAPI');
+
 
 const getRecomendation = async (req, res) => {
-    let recomendation = await dashboardModel.getRecomendation()
-    
-    res.status(200).json(recomendation);
+    try {
+        let recomendation = await fetchAPI.getRecomendationInfoAPI()
+        res.render('dashboard.pug', recomendation)
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(400).json({msj:`ERROR: ${error.stack}`});
+    }
 }
 
-module.exports() = getRecomendation
+module.exports = {getRecomendation}
