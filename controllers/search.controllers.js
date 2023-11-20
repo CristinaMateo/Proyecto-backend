@@ -16,19 +16,23 @@ const searchFilmsByTitle = (req, res) => {
 const showFilms = async (req, res) => {
     const title = req.params.title;
     const movieDetails = await fetch.getMovieDetails(title) // => devuelve [] con resultados
-    console.log(movieDetails)
     res.render("film-list", { movieDetails })
-    // const movieDetails = await fetch.getFilm(title);
-    // if (movieDetails.Response === "True") {
-    //     console.log(movieDetails);
-    //   res.render("film", { movieDetails });
-    // } else {
-    //   res.render("error");
-    // }
+}
+
+const showDetailedView = async (req, res) => {
+    const id = req.params.id;
+    const movieDetails = await fetch.getMovieByID(id) // => devuelve un objeto
+    const staff = await fetch.getCrewInfobyID(id)
+    const crewInfo = staff.crew;
+    const directorObject = crewInfo.find(person => person.job == "Director")
+    const director = directorObject.name || "Unknown";
+    console.log(director)
+    res.render("filmDetail", { movieDetails, director })
 }
 
 module.exports = {
     showSearchBar,
     searchFilmsByTitle,
     showFilms,
+    showDetailedView
 }
