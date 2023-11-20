@@ -7,7 +7,6 @@ function viewDetails() {
       (poster_path, title, vote_average)
     }`,
     {
-      method: "PUT",
       body: JSON({}),
     }
   );
@@ -23,3 +22,4 @@ function viewDetails() {
     .then((response) => response.json())
     .then((post) => {});
 }
+
