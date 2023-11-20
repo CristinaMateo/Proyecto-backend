@@ -21,6 +21,7 @@ app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 //const favmovie_sqlRoutes = require("./routes/favmovie_sql.routes")
 const adminRoutes = require("./routes/adminMongo.routes")
 
+
 //Rutas Template
 //app.use('/', loginRoutes);
 //app.use('/', filmDetailRoutes);
