@@ -3,7 +3,15 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-    body 
-        h1 Here is your film:
-        h2 Title: #{title}
+        title CoffeeMovie
+        link(rel="stylesheet", href="style.css")
+    body
+        nav
+            img(src="" id="app-logo")
+            article(id="burger-menu")
+        main  
+            h1 Here are your films:
+            each movie in movieDetails
+                article(class="search-list-card")
+                    h2 #{movie.title}
+                    h3 Release date: #{movie.release_date}

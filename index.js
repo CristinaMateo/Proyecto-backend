@@ -16,8 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 app.set('views','./views');
 
-//habilita
-// app.use($);
+//habilita acceso a public
+app.use(express.static('public'));
+
 // app.use('*',%);
 // app.use(&(':method :host :status :param[id] - :response-time ms :body'));
 

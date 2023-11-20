@@ -1,4 +1,4 @@
-// const fetch = require("../utils/fetchFilms.js")
+const fetch = require("../utils/fetch.js")
 
 
 // Controlador para mostrar la view "Search-Bar"
@@ -15,8 +15,8 @@ const searchFilmsByTitle = (req, res) => {
 // Controlador para el [GET] en /search/:title
 const showFilms = async (req, res) => {
     const title = req.params.title;
-    console.log(title)
-    res.render("film-list", { title })
+    const movieDetails = await fetch.getMovieDetails(title) // => devuelve [] con resultados
+    res.render("film-list", { movieDetails })
     // const movieDetails = await fetch.getFilm(title);
     // if (movieDetails.Response === "True") {
     //     console.log(movieDetails);
