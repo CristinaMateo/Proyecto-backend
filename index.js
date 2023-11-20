@@ -1,6 +1,4 @@
 const express = require('express');
-
-
 const app = express();
 const port = 3000;
 
@@ -29,6 +27,7 @@ const filmDetailRoutes = require("./routes/filmDetail.routes")
 const searchRoutes = require("./routes/search.routes.js")
 //const users_sqlRoutes = require("./routes/users_sql.routes")
 //const favmovie_sqlRoutes = require("./routes/favmovie_sql.routes")
+const adminRoutes = require("./routes/adminMongo.routes")
 
 
 //Rutas Template
@@ -37,6 +36,7 @@ app.use('/', filmDetailRoutes);
 app.use("/search", searchRoutes)
 //app.use('/',users_sqlRoutes);
 //app.use('/', favmovie_sqlRoutes);
+app.use('/', adminRoutes);
 
 
 //configuración plantilla pug
