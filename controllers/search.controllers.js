@@ -30,5 +30,5 @@ const showFilms = async (req, res) => {
 module.exports = {
     showSearchBar,
     searchFilmsByTitle,
-    showFilms
+    showFilms,
 }

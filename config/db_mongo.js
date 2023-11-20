@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-
-mongoose.connect("mongodb://localhost/mongo-movies");
+console.log
+mongoose.connect(process.env.MONGO_DB_URL)
 
 const db = mongoose.connection;
 
