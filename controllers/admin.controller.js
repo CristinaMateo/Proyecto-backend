@@ -24,6 +24,11 @@ try{
    }
 };
 
+//get search bar
+const getSearchBar =(req, res) => {
+  res.render("adminSearch")
+}
+
 
 //mostrar form para crear peli
 const getForm = (req, res) => {
@@ -32,5 +37,7 @@ const getForm = (req, res) => {
 
 module.exports = {
     createMovie,
-    getForm
+    getForm,
+    getSearchBar,
+    showDetailedView
 }

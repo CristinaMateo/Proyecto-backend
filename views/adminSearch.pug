@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body 
+
+        header
+            h1  CoffeeMovie
+        
+            input(type="button" id="menu_hamburguesa" value="Menu")
+        
+        main 
+
+            form(action="/search/" method="post" id="search-form")      
+                label(for="title") Search for a movie:
+                input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+                button(type="submit") Search
+            
+
+            a(href='/createMovieForm') 
+                button(type='button') Add a Movie

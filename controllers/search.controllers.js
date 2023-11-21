@@ -6,6 +6,7 @@ const showSearchBar = (req, res) => {
     res.render("search-bar")
 }
 
+
 // Controlador para el formulario tipo POST
 const searchFilmsByTitle = (req, res) => {
     const title = req.body.title;

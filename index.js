@@ -35,7 +35,7 @@ app.use('/', loginRoutes);
 app.use('/', searchRoutes)
 //app.use('/',users_sqlRoutes);
 //app.use('/', favmovie_sqlRoutes);
-app.use('/', adminRoutes);
+app.use('/admin', adminRoutes);
 
 
 //configuración plantilla pug
