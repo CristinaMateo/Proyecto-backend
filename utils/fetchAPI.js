@@ -1,4 +1,5 @@
 apiKey = "1b1d8ac19d2157bc278dad11d08b1894"
+const fetch = require('node-fetch');
 
 const getRecomendationInfoAPI = async () => {
     let response = await fetch (`https://api.themoviedb.org/3/discover/movie?&api_key=${apiKey}`)
