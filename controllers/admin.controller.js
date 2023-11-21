@@ -38,6 +38,5 @@ const getForm = (req, res) => {
 module.exports = {
     createMovie,
     getForm,
-    getSearchBar,
-    showDetailedView
+    getSearchBar
 }
