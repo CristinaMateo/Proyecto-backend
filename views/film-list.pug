@@ -5,7 +5,7 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title CoffeeMovie
         link(rel="stylesheet", href="/style.css")
-    
+        
     body
 
         header 
@@ -14,40 +14,44 @@ html(lang="en")
 
         main  
             h1 Here are your films:
-            each movie in movieDetails
+            for movie of movieDetails
                 article(class="search-list-card")
                     button(class="detail-btn")
                         h2 #{movie.title}
+                        img(src=`https://image.tmdb.org/t/p/w500${movie.poster_path}` alt=`Poster for ${movie.title}`)
                         h3 Release date: #{movie.release_date}
-                        h3(hidden) #{movie.id} 
+                        h3(hidden) #{movie.id}
+                        h3 Director: #{movie.director}
+                        h3 Genre: #{movie.genre}
+                        h3 Runtime: #{movie.runTime} minutes
+                        //- input(class="addFav" type="submit") Add to My Movies
+        script(src='/scripts/film-list.js')
+            -
+            //- for (let i = 0; i < directors.length; i++) {
+            //-     article(class="search-list-card")   
+            //-         button(class="detail-btn")
+            //-             h2 #{movieDetails[i].title}
+            //-             img(src=`https://image.tmdb.org/t/p/w500${movieDetails[i].poster_path}` alt=`Poster for ${movie.title}`)
+            //-             h3 Release date: #{movieDetails[i].release_date}
+            //-             h3(hidden) #{movieDetails[i].id}
+            //-             h3 Directors: #{directors[i]}
+            //- }
 
-            div#contenedorPagina2
+            //- each movie in movieDetails || directors
+            //-     article(class="search-list-card")
+            //-         button(class="detail-btn")
+            //-             h2 #{movie.title}
+            //-             img(src=`https://image.tmdb.org/t/p/w500${movie.poster_path}` alt=`Poster for ${movie.title}`)
+            //-             h3 Release date: #{movie.release_date}
+            //-             h3(hidden) #{movie.id}
+                        //- h3 Directors: #{getStaff(movie.id)}
 
-        
-        script.
-             let cardButtons = document.querySelectorAll(".detail-btn");
-             for (let i = 0; i < cardButtons.length; i++) {
-                 cardButtons[i].addEventListener('click', async function() {
-                 // Hacemos peticion para obtener datos generales de la peli clickada
-                 let response = await fetch(`https://api.themoviedb.org/3/movie/${cardButtons[i].children[2].innerHTML}?api_key=1b1d8ac19d2157bc278dad11d08b1894`);
-                 let singleMovieDtl = await response.json()
-                 console.log(singleMovieDtl)
+            //- h1 These are the directors:
+            //- each item in directors  
+            //-     h3 Director: #{item}
+                        
+                   
 
-                 // Hacemos peti para obtener datos de director
-                 let response2 = await fetch(`https://api.themoviedb.org/3/movie/${cardButtons[i].children[2].innerHTML}/credits?&api_key=03ce75d14fd1010ba46c32378b9f079a`)
-                 let crewDetails = await response2.json();
-                 console.log(crewDetails)
-
-                 //- pug.renderFile('./views/filmDetail', { singleMovieDtl, crewDetails })
-                  fetch('/filmDetail')  // Ajusta la ruta según tu estructura de archivos
-                            .then(response => response.text())
-                            .then(data => {
-                                document.getElementById('contenedorPagina2').innerHTML = data;
-                            })
-                            .catch(error => console.error('Error al cargar la página 2:', error));
-                 })};      
-
-                 //- script(src='/scripts/film-list.js')       
                     
 
 

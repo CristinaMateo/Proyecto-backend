@@ -6,21 +6,14 @@ html(lang="en")
         title Document
         link(rel="stylesheet", href="style.css")
     body 
-
-        
-        header 
-            h1  CoffeeMovie
-            input(type="button" id="menu_hamburguesa" value="Menu")
-
-
-        main      
-            article(class="detailCard" id="details_container") 
-                img(src="poster", alt="poster")
-                p Name
-                p Runtime
-                p Director
-                p Ratings 
-                p OVERVIEW 
+        main#details_container        
+            article(class="detailCard") 
+                img(src=`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}` alt=`Poster for ${movieDetails.title}`)
+                p Name: #{movieDetails.title}
+                p Runtime: #{movieDetails.runtime}
+                p Director: #{director}
+                p Overview: #{movieDetails.overview}
+                p Ratings: #{movieDetails.vote_average}
                 button#rating  OPINIONS
 
         script(src="script.js")
