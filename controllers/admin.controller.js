@@ -1,9 +1,11 @@
-const Movie = require('../models/admin.model');
+const {Movie} = require('../models/admin.model');
 
 //Crear peli
-async function createMovie(infoMovie){
-    const{title, year, director, genre, posterimage, duration, sinopsis, cast, rating} = infoMovie.body
-  try{ const movie = new Movie ({
+async function createMovie(req, res){
+try{
+    const{title, year, director, genre, posterimage, duration, overview, cast, rating} = req.body
+  
+   await Movie.create({ 
     title,
     year,
     director,
@@ -12,18 +14,18 @@ async function createMovie(infoMovie){
     duration,
     overview,
     cast,
-    rating
-   }); 
+    rating });
 
-   await movie.save();
-   res.send('Datos guardados exitosamente.');
-} catch (error) {
-  res.status(500).send('Error al guardar los datos.');
-}
+    res.render('peticionOK.pug')
+
+   }
+   catch(error){
+    res.render('peticionNO.pug')
+   }
 };
 
-//mostrar form para crear peli
 
+//mostrar form para crear peli
 const getForm = (req, res) => {
     res.render('createMovie.pug');
   }

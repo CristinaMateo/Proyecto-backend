@@ -8,7 +8,7 @@ const objectSchema = {
     posterimage: String,
     duration: String,
     overview: String,
-    cast: Array,
+    cast: String,
     rating: Number
 }
 
@@ -17,7 +17,7 @@ const movieSchema = connection.Schema(objectSchema);
 // Crear el modelo
 const Movie = connection.model('Movie', movieSchema);
 
-async function createMovie(title, year, director, genre, posterimage, duration, sinopsis, cast, rating) {
+async function createMovie(title, year, director, genre, posterimage, duration, overview, cast, rating) {
     const movie = new Movie({
         title, 
         year, 
@@ -25,7 +25,7 @@ async function createMovie(title, year, director, genre, posterimage, duration, 
         genre, 
         posterimage, 
         duration, 
-        sinopsis, 
+        overview, 
         cast, 
         rating
     })
@@ -34,7 +34,8 @@ console.log(result);
 }
 
 module.exports = {
-    createMovie
+    createMovie,
+    Movie
 }  
 
 // Creacion de peli para probar conexion a ATLAS
