@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let randomPoster = results[randomNumber].poster_path
 
     let randomTemplate = `span ${randomTitle}
-    img(https://image.tmdb.org/t/p/w500${randomPoster}", alt="${randomTitle}")`
+    img(https://image.tmdb.org/t/p/w500${randomPoster}")`
 
     recomendation.innerHTML = randomTemplate
 })
@@ -23,6 +23,18 @@ searchButton.addEventListener("click", function (){
 
 favoriteButton.addEventListener("click", function (){
     
+})
+
+const openNav = document.getElementById("menu_hamburguesa")
+const closeNav = document.getElementById("closeMenu")
+const nav = document.getElementById("nav")
+
+openNav.addEventListener("click", function () {
+    nav.classList.add("visible")
+})
+
+closeNav.addEventListener("click", function () {
+    nav.classList.remove("visible")
 })
 
 

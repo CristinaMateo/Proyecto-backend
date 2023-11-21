@@ -6,3 +6,47 @@
     border: 1px solid black;
     background-color: aquamarine; */
 /* } */
+
+.navList {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    list-style-type: none;
+    gap: 1rem;
+}
+
+.navList li a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav {
+    opacity: 0;
+    visibility: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 1rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: black;
+    padding: 2rem;
+}
+
+.nav.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#closeMenu {
+    cursor: pointer;
+    color: white;
+}
+
+#menu_hamurguesa {
+    cursor: pointer;
+    color: black;
+}
