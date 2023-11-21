@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body
+
+        header 
+            h1  CoffeeMovie
+            input(type="button" id="menu_hamburguesa" value="Menu")
+
+
+        main
+            h3 These are your favourite movies so far:
+            
+            each movie in movies
+                article(class="favorite-movies")
+                    button(class="detail-btn")
+                        h2 #{movie.title}
+                        p #{movie.genre}
+                        img(src=movie.posterimg)

@@ -7,9 +7,11 @@ html(lang="en")
         link(rel="stylesheet", href="/style.css")
     
     body
-        nav
-            img(src="" id="app-logo")
-            article(id="burger-menu")
+
+        header 
+            h1  CoffeeMovie
+            input(type="button" id="menu_hamburguesa" value="Menu")
+
         main  
             h1 Here are your films:
             each movie in movieDetails
@@ -19,24 +21,33 @@ html(lang="en")
                         h3 Release date: #{movie.release_date}
                         h3(hidden) #{movie.id} 
 
-        script(src='/scripts/film-list.js')
-        //- script.
-        //-     let cardButtons = document.querySelectorAll(".detail-btn");
-        //-     for (let i = 0; i < cardButtons.length; i++) {
-        //-         cardButtons[i].addEventListener('click', async function() {
-        //-         // Hacemos peticion para obtener datos generales de la peli clickada
-        //-         let response = await fetch(`https://api.themoviedb.org/3/movie/${cardButtons[i].children[2].innerHTML}?api_key=1b1d8ac19d2157bc278dad11d08b1894`);
-        //-         let singleMovieDtl = await response.json()
-        //-         console.log(singleMovieDtl)
+            div#contenedorPagina2
 
-        //-         // Hacemos peti para obtener datos de director
-        //-         let response2 = await fetch(`https://api.themoviedb.org/3/movie/${cardButtons[i].children[2].innerHTML}/credits?&api_key=03ce75d14fd1010ba46c32378b9f079a`)
-        //-         let crewDetails = await response2.json();
-        //-         console.log(crewDetails)
+        
+        script.
+             let cardButtons = document.querySelectorAll(".detail-btn");
+             for (let i = 0; i < cardButtons.length; i++) {
+                 cardButtons[i].addEventListener('click', async function() {
+                 // Hacemos peticion para obtener datos generales de la peli clickada
+                 let response = await fetch(`https://api.themoviedb.org/3/movie/${cardButtons[i].children[2].innerHTML}?api_key=1b1d8ac19d2157bc278dad11d08b1894`);
+                 let singleMovieDtl = await response.json()
+                 console.log(singleMovieDtl)
 
-        //-         //- pug.renderFile('./views/filmDetail', { singleMovieDtl, crewDetails })
-        //-         window.location.href = '/filmDetail';
-        //-         })};             
+                 // Hacemos peti para obtener datos de director
+                 let response2 = await fetch(`https://api.themoviedb.org/3/movie/${cardButtons[i].children[2].innerHTML}/credits?&api_key=03ce75d14fd1010ba46c32378b9f079a`)
+                 let crewDetails = await response2.json();
+                 console.log(crewDetails)
+
+                 //- pug.renderFile('./views/filmDetail', { singleMovieDtl, crewDetails })
+                  fetch('/filmDetail')  // Ajusta la ruta según tu estructura de archivos
+                            .then(response => response.text())
+                            .then(data => {
+                                document.getElementById('contenedorPagina2').innerHTML = data;
+                            })
+                            .catch(error => console.error('Error al cargar la página 2:', error));
+                 })};      
+
+                 //- script(src='/scripts/film-list.js')       
                     
 
 
