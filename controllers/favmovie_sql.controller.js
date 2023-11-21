@@ -1,11 +1,15 @@
 const favMovieModel = require('../models/favmovie_sql.model');
 
 const getFavMovies = async (req, res) => {
-    let movie;
-        movie = await favMovieModel.getFavMovies(req.query.email);//esto accede a user.models y llama a esa funcion allí
-    
-    res.status(200).json(movies); // [] con los users encontradas
-}
+    try {
+      const movies = await favMovieModel.getFavMovies(req.query.email);
+      res.render('favmovies', { movies }); // Renderiza la vista favmovies.pug con los datos obtenidos
+    } catch (error) {
+      console.error('Error al obtener las películas favoritas:', error);
+      res.status(500).send('Error interno del servidor');
+    }
+  };
+
 
 const addFavMovies = async (req, res) => {
     const newfav = req.body; 
