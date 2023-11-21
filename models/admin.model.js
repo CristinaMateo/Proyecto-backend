@@ -2,12 +2,12 @@ const connection = require('../config/db_mongo');
 
 const objectSchema = {
     title: String,
-    year: Number,
+    year: String,
     director: String,
     genre: String,
     posterimage: String,
     duration: String,
-    sinopsis: String,
+    overview: String,
     cast: Array,
     rating: Number
 }

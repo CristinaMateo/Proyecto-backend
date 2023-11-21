@@ -6,24 +6,26 @@ html(lang="en")
         title Document
         link(rel="stylesheet", href="style.css")
     body 
+        
+        header 
+            h1  CoffeeMovie
+            input(type="button" id="menu_hamburguesa" value="Menu")
 
-    include ./header.pug
-
-    main#details_container
+        main#details_container
     
-        article(class="detailCard") 
-            img(src="poster", alt="poster")
-            p Name
-            p Runtime
-            p Director
-            p Ratings 
-            p OVERVIEW 
+            article(class="detailCard") 
+                img(src="poster", alt="poster")
+                p Name
+                p Runtime
+                p Director
+                p Ratings 
+                p OVERVIEW 
 
 
 
-        button#rating  OPINIONS
+            button#rating  OPINIONS
 
         
-include ./footer.pug
-script(src="script.js")
+
+        script(src="script.js")
 
