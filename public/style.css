@@ -15,8 +15,8 @@ header {
 }
 
 .nav {
-    /* opacity: 0;
-    visibility: hidden; */
+    opacity: 0;
+    visibility: hidden;
 
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@ header {
     padding: 2rem;
 }
 
-.nav.visible {
+.visible {
     opacity: 1;
     visibility: visible;
 }
