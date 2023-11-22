@@ -2,14 +2,14 @@ const connection = require('../config/db_mongo');
 
 const objectSchema = {
     title: String,
-    year: String,
+    release_date: String,
     director: String,
     genre: String,
-    posterimage: String,
-    duration: String,
+    poster_path: String,
+    runTime: String,
     overview: String,
     cast: String,
-    rating: Number
+    vote_average: Number
 }
 
 // Crear el esquema
@@ -20,14 +20,14 @@ const Movie = connection.model('Movie', movieSchema);
 async function createMovie(title, year, director, genre, posterimage, duration, overview, cast, rating) {
     const movie = new Movie({
         title, 
-        year, 
+        release_date, 
         director, 
         genre, 
-        posterimage, 
-        duration, 
+        poster_path, 
+        runTime, 
         overview, 
         cast, 
-        rating
+        vote_average
     })
 const result = await movie.save();
 console.log(result);

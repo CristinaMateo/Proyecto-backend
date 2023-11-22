@@ -7,14 +7,14 @@ try{
   
    await Movie.create({ 
     title,
-    year,
+    release_date,
     director,
     genre,
-    posterimage,
-    duration,
+    poster_path,
+    runTime,
     overview,
     cast,
-    rating });
+    vote_average });
 
     res.render('peticionOK.pug')
 
@@ -24,6 +24,11 @@ try{
    }
 };
 
+//get search bar
+const getSearchBar =(req, res) => {
+  res.render("adminSearch")
+}
+
 
 //mostrar form para crear peli
 const getForm = (req, res) => {
@@ -32,5 +37,6 @@ const getForm = (req, res) => {
 
 module.exports = {
     createMovie,
-    getForm
+    getForm,
+    getSearchBar
 }
