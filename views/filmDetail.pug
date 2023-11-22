@@ -8,10 +8,10 @@ html(lang="en")
     body 
         main#details_container        
             article(class="detailCard") 
-                img(src=`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}` alt=`Poster for ${movieDetails.title}`)
+                img(src=`${movieDetails.poster_path}` alt=`Poster for ${movieDetails.title}`)
                 p Name: #{movieDetails.title}
                 p Runtime: #{movieDetails.runtime}
-                p Director: #{director}
+                p Director: #{movieDetails.director}
                 p Overview: #{movieDetails.overview}
                 p Ratings: #{movieDetails.vote_average}
                 button#rating  OPINIONS
