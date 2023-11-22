@@ -20,12 +20,24 @@ const Success = (req, res) => {
         expiresIn: "20m"
     });
 
-    console.log("token:", token);
+    
+    console.log("req",req.user);
     //Almacenamos el token en las cookies
     res.cookie("access-token", token, {
         httpOnly: true,
         sameSite: "strict",
-    }).redirect("/dashboard");
+    })
+    res.cookie("logged-email", req.user.emails[0].value,{
+        httpOnly: true,
+        sameSite: "strict",
+    })
+    res.cookie("logged-user", req.user.displayName,{
+        httpOnly: true,
+        sameSite: "strict",
+    })
+    
+    .redirect("/dashboard");
+
 }
 
 

@@ -9,11 +9,14 @@ html(lang="en")
     body 
         header 
                 h1  CoffeeMovie
-                input(type="button" id="menu_hamburguesa" value="Menu")
+                a(href="/menu")
+                    input(type="button" id="menu_hamburguesa" value="Menu")
                 
         main
             section(class="routeButtons")
+            a(href="/search")
                 button(id="searchButton") Search
+            a(href="/movies")
                 button(id="favoriteButton")  My movies
             section 
                 h2 Film of the day
