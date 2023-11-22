@@ -1,6 +1,10 @@
 
 const fetch = require('../utils/fetchAPI');
 
+const getMenu = (req, res) => {
+    res.render('navMenu.pug');
+    
+  }
 
 const getRecomendation = async (req, res) => {
     try {
@@ -13,4 +17,7 @@ const getRecomendation = async (req, res) => {
     }
 }
 
-module.exports = {getRecomendation}
+module.exports = {
+    getRecomendation,
+    getMenu
+}
