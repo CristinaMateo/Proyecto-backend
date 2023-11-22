@@ -20,8 +20,6 @@ const Success = (req, res) => {
         expiresIn: "20m"
     });
 
-    
-    console.log("req",req.user);
     //Almacenamos el token en las cookies
     res.cookie("access-token", token, {
         httpOnly: true,
