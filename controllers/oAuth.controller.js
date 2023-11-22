@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
 const passport = require('passport');
+const isAdmin = require("./isAdmin");
 require('../config/oauth')
+
 
 
 const authentication = passport.authenticate("google", { scope: ['email', 'profile'], prompt: "select_account" })
@@ -33,8 +35,12 @@ const Success = (req, res) => {
         httpOnly: true,
         sameSite: "strict",
     })
+    if(isAdmin(req.user.emails[0].value)){
+        res.redirect("/admin/search")
+    } else{
+        res.redirect("/dashboard");
+    }
     
-    .redirect("/dashboard");
 
 }
 

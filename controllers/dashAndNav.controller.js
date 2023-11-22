@@ -1,4 +1,4 @@
-const isAdmin = require('./isAdmin')
+
 const fetch = require('../utils/fetchAPI');
 
 const getMenu = (req, res) => {
@@ -9,7 +9,7 @@ const getMenu = (req, res) => {
 const getRecomendation = async (req, res) => {
     try {
         let recomendation = await fetch.getRecomendationInfoAPI
-        res.render('dashboard.pug',{...recomendation, email: req.user.emails[0].value, user: req.user.displayName, isAdmin: isAdmin(req.user.emails[0].value)})
+        res.render('dashboard.pug',{recomendation})
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`);
