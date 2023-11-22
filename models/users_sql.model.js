@@ -1,5 +1,8 @@
 const queries = require('../queries/users_sql.queries')
 const pool = require('../config/db_pgsql')//accede al fichero este que es el que accede al .env donde está la info
+const regex = require('../utils/regex');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const getUsersByEmail = async (email) => {
     let client, result;
@@ -17,12 +20,17 @@ const getUsersByEmail = async (email) => {
 }
 
 const createUser = async (infouser) => {
-    const {username,email,image} = infouser;
+    const { email, username, password, password2, image } = infouser;
+    const hashPassword = await bcrypt.hash(password, saltRounds)
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.createUser,[username, email, image])
-        result = data.rowCount
+        if (regex.validateEmail(email) && regex.validatePassword(password)) {
+            client = await pool.connect(); // Espera a abrir conexion
+            const data = await client.query(queries.createUser, [username, email, image, hashPassword])
+            result = data.rowCount  
+        } else {
+            console.warn("Invalid email or password")
+        }
     } catch (err) {
         console.log(err);
         throw err;

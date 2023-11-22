@@ -24,19 +24,19 @@ html(lang="en")
 
             a(href="/auth/google") Authenticate with google
 
-            form(id ="form1" action="#" method="POST")
+            form(id ="form1" action="/addUser/" method="POST")
                 h3 Create an account 
                 fieldset
                     label(for="email") Email:
                     input(type="email" id="email" name="email" placeholder="Introduce email...")
-                    label(for="signup-user") Username:
-                    input(type="text" id="signup-user" name="signup-user" placeholder ="Username")
-                    label(for="pass") Password
-                    input(type="password" id="pass" name="pass" placeholder="Introduce password...")
+                    label(for="username") Username:
+                    input(type="text" id="username" name="username" placeholder ="Username")
+                    label(for="password") Password
+                    input(type="password" id="password" name="password" placeholder="Introduce password...")
                     label(for="pass2") Repeat password:
-                    input(type="password" id="pass2" name="pass2" placeholder="Repite password...")
-                    label(for="signup-picture") Picture:
-                    input(type="file" id="signup-picture" accept="image/*" name="signup-picture")
+                    input(type="password" id="password2" name="password2" placeholder="Repite password...")
+                    label(for="image") Picture:
+                    input(type="file" id="signup-picture" accept="image/*" name="image")
                     input(type="submit" value="Create" id="create")
 
         footer
