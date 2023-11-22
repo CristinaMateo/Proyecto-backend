@@ -7,22 +7,16 @@
     background-color: aquamarine; */
 /* } */
 
-.navList {
+header {
     display: flex;
-    flex-direction: column;
-    align-items: end;
-    list-style-type: none;
-    gap: 1rem;
-}
-
-.navList li a {
-    text-decoration: none;
-    color: white;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 85px;
 }
 
 .nav {
-    opacity: 0;
-    visibility: hidden;
+    /* opacity: 0;
+    visibility: hidden; */
 
     display: flex;
     flex-direction: column;
@@ -32,7 +26,7 @@
     top: 0;
     bottom: 0;
     right: 0;
-    background-color: black;
+    background-color: #DCC9B6;
     padding: 2rem;
 }
 
@@ -41,12 +35,42 @@
     visibility: visible;
 }
 
-#closeMenu {
-    cursor: pointer;
-    color: white;
+.navList {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    list-style-type: none;
+    gap: 2rem;
 }
 
-#menu_hamurguesa {
+.navList li a {
+    text-decoration: none;
+    color: black;
+}
+
+
+#closeNav {
     cursor: pointer;
     color: black;
+}
+
+#openNav {
+    cursor: pointer;
+    color: black;
+}
+
+.routeButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.title_recomendation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: ; */
 }
