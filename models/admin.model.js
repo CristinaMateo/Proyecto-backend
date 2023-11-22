@@ -6,7 +6,7 @@ const objectSchema = {
     director: String,
     genre: String,
     poster_path: String,
-    runTime: String,
+    runtime: String,
     overview: String,
     cast: String,
     vote_average: Number
@@ -17,14 +17,14 @@ const movieSchema = connection.Schema(objectSchema);
 // Crear el modelo
 const Movie = connection.model('Movie', movieSchema);
 
-async function createMovie(title, year, director, genre, posterimage, duration, overview, cast, rating) {
+async function createMovie(title, release_date, director, genre, poster_path, runtime, overview, cast, vote_average) {
     const movie = new Movie({
         title, 
         release_date, 
         director, 
         genre, 
         poster_path, 
-        runTime, 
+        runtime, 
         overview, 
         cast, 
         vote_average

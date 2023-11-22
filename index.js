@@ -3,11 +3,21 @@ const app = express();
 const port = 3000;
 require("dotenv").config();
 
+//const jwt = require("jsonwebtoken");
+//const passport = require("passport");
+//const session = require("express-session");
+
+
 
 //habilita recepción objetos
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+//Inicializamos passport y la session de passport
+//app.use(session({ secret: 'SECRET' }));
+//app.use(passport.initialize());
+//app.use(passport.session());
 
 //middelwares
 const error404 = require('./middlewares/error404')
