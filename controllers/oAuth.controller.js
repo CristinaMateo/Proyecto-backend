@@ -1,36 +1,33 @@
-const authConfig = require('../config/oauth')
 const jwt = require("jsonwebtoken");
-const passport = require("passport");
+const passport = require('passport');
+require('../config/oauth')
 
-const authentication = () =>{
-    passport.authenticate("google", { scope: ['email', 'profile'], prompt: "select_account" })
+
+const authentication = passport.authenticate("google", { scope: ['email', 'profile'], prompt: "select_account" })
+
+//Fallo
+const redirectToFailure = passport.authenticate('google', { failureRedirect: '/auth/failure' })
+
+//Éxito
+const Success = (req, res) => {
+//En el cuerpo de esta función podemos almacenar usuarios en nuestra bbdd con el objeto que nos proporciona req.user (Para ello es necesario hacer la función asíncrona)
+ //Estos son los pasos para crear un token si la autenticación es exitosa
+    const payload = {
+    //save here data
+    check: true
+    };
+    const token = jwt.sign(payload, `secret_key`, {
+        expiresIn: "20m"
+    });
+
+    console.log("token:", token);
+    //Almacenamos el token en las cookies
+    res.cookie("access-token", token, {
+        httpOnly: true,
+        sameSite: "strict",
+    }).redirect("/dashboard");
 }
 
-
-//Función de fallo
-    const failOrSuccess = () =>{
-        passport.authenticate('google', { failureRedirect: '/auth/failure' }),
-        //Función exitosa
-        (req, res) => {
-        //En el cuerpo de esta función podemos almacenar usuarios en nuestra bbdd con el objeto que nos proporciona req.user (Para ello es necesario hacer la función asíncrona)
-
-        //Estos son los pasos para crear un token si la autenticación es exitosa
-        const payload = {
-            //save here data
-            check: true
-        };
-        const token = jwt.sign(payload, `secret_key`, {
-            expiresIn: "20m"
-        });
-
-        console.log(token);
-        //Almacenamos el token en las cookies
-        res.cookie("access-token", token, {
-            httpOnly: true,
-            sameSite: "strict",
-        }).redirect("/dashboard");
-    }
-} 
 
 
 const failure = (req, res) => {
@@ -50,7 +47,8 @@ const logout =(req, res) => {
 
 module.exports = {
     authentication,
-    failOrSuccess,
+    redirectToFailure,
+    Success,
     failure,
     logout
 }

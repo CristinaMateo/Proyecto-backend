@@ -29,9 +29,6 @@ const morgan = require('./middlewares/morgan')
 // Logger
 app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 
-// Middlewares para habilitar recepción de JSONs.
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 //rutas
 const scraperRoute= require("./routes/scraper.routes.js")
@@ -41,7 +38,7 @@ const searchRoutes = require("./routes/search.routes.js")
 //const favmovie_sqlRoutes = require("./routes/favmovie_sql.routes")
 const adminRoutes = require("./routes/adminMongo.routes")
 const authRoutes = require("./routes/oAuth.routes.js")
-const dashAndNav = requiere("./routes/dashAndNav.routes.js")
+const dashAndNav = require("./routes/dashAndNav.routes.js")
 
 //Rutas Template
 app.use("/scraper", scraperRoute);
