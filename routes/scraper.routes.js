@@ -4,7 +4,7 @@ const opinion = require('../controllers/scraper.controller') // Importamos el co
 const router = express.Router()
 
 // Creamos los endpoints
-router.get('/',opinion.getHello)
-router.get('/opinion',opinion.getOpinion)
+// router.get('/',opinion.getHello)
+router.get('/',opinion.getOpinion)
 
 module.exports = router

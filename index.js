@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //rutas
-const scraperOute= require("./routes/scraper.routes.js")
+const scraperRoute= require("./routes/scraper.routes.js")
 const loginRoutes = require("./routes/login.routes")
 const searchRoutes = require("./routes/search.routes.js")
 //const users_sqlRoutes = require("./routes/users_sql.routes")
@@ -34,7 +34,7 @@ const adminRoutes = require("./routes/adminMongo.routes")
 
 
 //Rutas Template
-app.use("/scraper", scraperOute);
+app.use("/scraper", scraperRoute);
 app.use('/', loginRoutes);
 app.use('/', searchRoutes)
 //app.use('/',users_sqlRoutes);
