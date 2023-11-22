@@ -7,7 +7,9 @@ html(lang="en")
     body
         header 
             h1  CoffeeMovie
-            input(type="button" id="menu_hamburguesa" value="Menu")
+            a(href="/menu")
+                input(type="button" id="menu_hamburguesa" value="Menu")
+
         main
             form(action="/search/" method="post" id="search-form")      
                 label(for="title") Search for a movie:
