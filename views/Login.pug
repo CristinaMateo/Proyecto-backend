@@ -17,12 +17,12 @@ html(lang="en")
                     input(type="text", placeholder="Introduce password", name="password", id="log_pass")
                     input(type="submit" value="Log in" id="log")
 
+
             p(id="msgerr")
 
-            h5 If you are not a member of out comunity you can also: 
+            h5 If you are not a member of out comunity you can also sign up or authenticate with
 
-            button(id="sign-button") Sign up
-            button(id="guest") Continue as guest
+            a(href="/auth/google") Authenticate with google
 
             form(id ="form1" action="#" method="POST")
                 h3 Create an account 
@@ -40,5 +40,4 @@ html(lang="en")
                     input(type="submit" value="Create" id="create")
 
         footer
-            div(class="top")
-                a(href="#top") Back to top
+            
