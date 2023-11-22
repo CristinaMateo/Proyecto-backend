@@ -6,7 +6,7 @@ const authRouter = express.Router();
 authRouter.get("/auth/google", authController.authentication);
 
 
-authRouter.get("/callBack", authController.failOrSuccess);
+authRouter.get("/callBack?", authController.failOrSuccess);
 
     
 //Definimos una ruta en caso de que la autenticación falle.
