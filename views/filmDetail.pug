@@ -4,17 +4,19 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
-        link(rel="stylesheet", href="style.css")
+        //- link(rel="stylesheet", href="style.css")
     body 
         main#details_container        
             article(class="detailCard") 
+
                 img(src=`${movieDetails.poster_path}` alt=`Poster for ${movieDetails.title}`)
                 p Name: #{movieDetails.title}
                 p Runtime: #{movieDetails.runtime}
                 p Director: #{movieDetails.director}
                 p Overview: #{movieDetails.overview}
                 p Ratings: #{movieDetails.vote_average}
+
                 button#rating  OPINIONS
 
-        script(src="script.js")
+        script(src="/js/script.js")
 

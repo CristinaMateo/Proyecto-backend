@@ -1,8 +1,8 @@
-const fetchAPI = require("../utils/fetchAPI")
 
 const recomendation = document.getElementsByClassName("recomendation")
 const searchButton = document.getElementById("searchButton")
 const favoriteButton = document.getElementById("favoriteButton")
+const ratingButton = document.getElementById("rating");
 
 document.addEventListener("DOMContentLoaded", function () {
     fetchAPI.getRecomendationInfoAPI
@@ -26,3 +26,8 @@ favoriteButton.addEventListener("click", function (){
 })
 
 
+ratingButton.addEventListener("click",function (){
+    console.log(ratingButton);
+})
+
+console.log("hola");
