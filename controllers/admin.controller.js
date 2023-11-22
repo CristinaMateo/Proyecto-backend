@@ -7,14 +7,14 @@ try{
   
    await Movie.create({ 
     title,
-    year,
+    release_date,
     director,
     genre,
-    posterimage,
-    duration,
+    poster_path,
+    runTime,
     overview,
     cast,
-    rating });
+    vote_average });
 
     res.render('peticionOK.pug')
 
