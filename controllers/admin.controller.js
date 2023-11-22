@@ -26,7 +26,7 @@ try{
 
 //get search bar
 const getSearchBar =(req, res) => {
-  res.render("adminSearch")
+  res.render("adminSearch", {email: req.user.emails[0].value, user: req.user.displayName})
 }
 
 
