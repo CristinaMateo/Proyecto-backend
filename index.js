@@ -4,10 +4,19 @@ const port = 3000;
 require("dotenv").config();
 
 
+const passport = require("passport");
+const session = require("express-session");
+
+
 //habilita recepción objetos
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+//Inicializamos passport y la session de passport
+app.use(session({ secret: 'SECRET' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //middelwares
 const error404 = require('./middlewares/error404')
@@ -32,7 +41,7 @@ const dashboardRoutes = require("./routes/dashboard.routes.js")
 //const users_sqlRoutes = require("./routes/users_sql.routes")
 //const favmovie_sqlRoutes = require("./routes/favmovie_sql.routes")
 const adminRoutes = require("./routes/adminMongo.routes")
-
+const authRoutes = require("./routes/oAuth.routes.js")
 
 //Rutas Template
 app.use("/scraper", scraperRoute);
@@ -42,6 +51,7 @@ app.use('/', dashboardRoutes)
 //app.use('/',users_sqlRoutes);
 //app.use('/', favmovie_sqlRoutes);
 app.use('/admin', adminRoutes);
+app.use('/', authRoutes)
 
 
 //configuración plantilla pug

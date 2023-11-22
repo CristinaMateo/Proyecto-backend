@@ -3,7 +3,7 @@ const {Movie} = require('../models/admin.model');
 //Crear peli
 async function createMovie(req, res){
 try{
-    const{title, year, director, genre, posterimage, duration, overview, cast, rating} = req.body
+    const{title, release_date, director, genre, poster_path, runtime, overview, cast, vote_average} = req.body
   
    await Movie.create({ 
     title,
@@ -11,7 +11,7 @@ try{
     director,
     genre,
     poster_path,
-    runTime,
+    runtime,
     overview,
     cast,
     vote_average });
