@@ -3,6 +3,7 @@ const favoriteButton = document.querySelector("#favoriteButton")
 const openNav = document.querySelector("#openNav")
 const closeNav = document.querySelector("#closeNav")
 const nav = document.getElementById("nav")
+const recomendation = document.getElementById("recomendation")
 
 document.addEventListener("DOMContentLoaded", function () {
     async function getRecomendationApi() {
@@ -12,21 +13,18 @@ document.addEventListener("DOMContentLoaded", function () {
         title: recomendation.original_title,
         image: recomendation.poster_path
         }));
-        console.log(image_title) 
-    }
-    function showRecomendation() {
-        const recomendation = document.getElementsByClassName("recomendation")
-        getRecomendationApi()
 
-        let randomNumber = Math.floor(Math.random())
-        let randomTitle = results[randomNumber].original_title
-        let randomImage = results[randomNumber].poster_path
+        let randomNumber = Math.floor(Math.random()*20)
+        let randomTitle = image_title[randomNumber].title
+        console.log(randomTitle);
+        let randomImage = image_title[randomNumber].image
+        console.log(randomImage);
 
         let template = `<span>${randomTitle}</span>
-        <img src="https://image.tmdb.org/t/p/w500${randomImage} alt="${randomImage}"`
+        <img src="https://image.tmdb.org/t/p/w500${randomImage}" alt="${randomTitle}">`
         recomendation.innerHTML = template
-    }
-    showRecomendation()
+    }  
+    getRecomendationApi()  
 })
 
 searchButton.addEventListener("click", () => {

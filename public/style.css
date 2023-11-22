@@ -74,3 +74,8 @@ header {
     align-items: center;
     /* background-color: ; */
 }
+
+img {
+    height: 200px;
+    width: 150px;
+}
