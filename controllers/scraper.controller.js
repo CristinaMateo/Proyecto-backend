@@ -1,4 +1,4 @@
-// Importamos la función scraper de la carpeta utils
+// Importamos la función scraperSensa de la carpeta utils
 const scraper = require('../utils/scraperSensa.js') 
 
 module.exports = {
@@ -19,3 +19,4 @@ module.exports = {
     }
     
 }
+
