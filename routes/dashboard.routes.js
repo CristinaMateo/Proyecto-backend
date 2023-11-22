@@ -4,4 +4,4 @@ const router = express.Router()
 
 router.get('/dashboard', dashboardController.getRecomendation)
 
-module.exports = {router}
+module.exports = router

@@ -1,11 +1,11 @@
 
-const fetchAPI = require('../utils/fetchAPI');
+const fetch = require('../utils/fetchAPI');
 
 
 const getRecomendation = async (req, res) => {
     try {
-        let recomendation = await fetchAPI.getRecomendationInfoAPI()
-        res.render('dashboard.pug', recomendation)
+        let recomendation = await fetch.getRecomendationInfoAPI
+        res.render('dashboard.pug',{recomendation})
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`);

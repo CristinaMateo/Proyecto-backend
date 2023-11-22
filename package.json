@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "generate-docs": "jsdoc -c ./jsdoc.json"
   },
   "author": "",
   "license": "ISC",
@@ -20,11 +21,14 @@
     "mongoose": "^8.0.1",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
+    "mongoose": "^8.0.0",
+    "node-fetch": "^2.7.0",
     "pg": "^8.11.3",
     "pug": "^3.0.2",
     "puppeteer": "^21.5.2"
   },
   "devDependencies": {
+    "jsdoc": "^4.0.2",
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1"
   }

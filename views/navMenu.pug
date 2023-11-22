@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+    head 
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title dashboard
+        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css")
+        link(rel="stylesheet", href="./style.css") 
+    body 
+        nav(class="nav" id="nav")
+            ul(class="navList")
+                li 
+                    button(id="closeNav") <i class="bi bi-x"></i>
+                li
+                    a(href="/dashboard") HOME
+                li
+                    a(href="/search") SEARCH 
+                li
+                    a(href="/movies") MY MOVIES 
+                li
+                    a(href="/login" id="logoutNav") LOG OUT 
