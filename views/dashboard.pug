@@ -5,21 +5,18 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title dashboard
-        link(rel="stylesheet", href="style.css") 
+        link(rel="stylesheet", href="./style.css") 
     body 
-
         header 
                 h1  CoffeeMovie
-        
                 input(type="button" id="menu_hamburguesa" value="Menu")
-
+                include ./header.pug
         main
-        
-            section
-                input(type="button" id="searchButton") Search
-                input(type="button" id="favoriteButton")  My movies
+            section(class="routeButtons")
+                button(id="searchButton") Search
+                button(id="favoriteButton")  My movies
             section 
                 h2 Film of the day
-                article(class="recomendation")
-        script(src="./public/script.js")
+                article(id="recomendation")
+        script(src="./scripts/script1.js")
 
