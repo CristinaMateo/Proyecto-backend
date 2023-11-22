@@ -9,6 +9,7 @@ morgan.token('param', function (req, res, param) {
     return req.params;
  });
 
+
  module.exports = morgan
 
 

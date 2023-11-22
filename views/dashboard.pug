@@ -7,13 +7,15 @@ html(lang="en")
         title dashboard
         link(rel="stylesheet", href="./style.css") 
     body 
+        header 
+                h1  CoffeeMovie
+                input(type="button" id="menu_hamburguesa" value="Menu")
+                include ./header.pug
         main
-            header 
-                include ./header.pug 
             section(class="routeButtons")
-                button(id="searchButton") Search
-                button(id="favoriteButton") My Movies 
-            section(class="title_recomendation") 
+                input(type="button" id="searchButton") Search
+                input(type="button" id="favoriteButton")  My movies
+            section 
                 h2 Film of the day
                 article(id="recomendation")
         script(src="./scripts/script1.js")

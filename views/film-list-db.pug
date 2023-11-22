@@ -18,12 +18,12 @@ html(lang="en")
                 article(class="search-list-card")
                     button(class="detail-btn")
                         h2 #{movie.title}
-                        img(src=`https://image.tmdb.org/t/p/w500${movie.poster_path}` alt=`Poster for ${movie.title}`)
+                        img(src=`${movie.poster_path}` alt=`Poster for ${movie.title}`)
                         h3 Release date: #{movie.release_date}
-                        h3(hidden) #{movie.id} 
+                        h3(hidden) #{movie._id} 
                         h3 Director: #{movie.director}
                         h3 Genre: #{movie.genre}
-                        h3 Runtime: #{movie.runtime} minutes
+                        h3 Runtime: #{movie.runtime}
                         //- input(class="addFav" type="submit") Add to My Movies
         script(src='/scripts/film-list.js')
             

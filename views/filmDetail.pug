@@ -8,12 +8,12 @@ html(lang="en")
     body 
         main#details_container        
             article(class="detailCard") 
-                img(src="poster", alt="poster")
-                p Name
-                p Runtime
-                p Director
-                p Ratings 
-                p OVERVIEW 
+                img(src=`${movieDetails.poster_path}` alt=`Poster for ${movieDetails.title}`)
+                p Name: #{movieDetails.title}
+                p Runtime: #{movieDetails.runtime}
+                p Director: #{movieDetails.director}
+                p Overview: #{movieDetails.overview}
+                p Ratings: #{movieDetails.vote_average}
                 button#rating  OPINIONS
 
         script(src="script.js")

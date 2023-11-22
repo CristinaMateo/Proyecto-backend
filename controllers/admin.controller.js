@@ -1,22 +1,42 @@
-const Movie = require('../models/admin.model');
+const {Movie} = require('../models/admin.model');
 
 //Crear peli
-async function createMovie(infoMovie){
-    const{title, year, director, genre, posterimage, duration, sinopsis, cast, rating} = infoMovie.body
-   const movie = new Movie ({
+async function createMovie(req, res){
+try{
+    const{title, year, director, genre, posterimage, duration, overview, cast, rating} = req.body
+  
+   await Movie.create({ 
     title,
-    year,
+    release_date,
     director,
     genre,
-    posterimage,
-    duration,
-    sinopsis,
+    poster_path,
+    runTime,
+    overview,
     cast,
-    rating
-   }) 
+    vote_average });
 
-   const result = await movie.save();
-    console.log(result);
+    res.render('peticionOK.pug')
+
+   }
+   catch(error){
+    res.render('peticionNO.pug')
+   }
+};
+
+//get search bar
+const getSearchBar =(req, res) => {
+  res.render("adminSearch")
 }
 
-module.exports = {createMovie}
+
+//mostrar form para crear peli
+const getForm = (req, res) => {
+    res.render('createMovie.pug');
+  }
+
+module.exports = {
+    createMovie,
+    getForm,
+    getSearchBar
+}
