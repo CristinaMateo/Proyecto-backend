@@ -12,7 +12,12 @@ html(lang="en")
             h1  CoffeeMovie
             input(type="button" id="menu_hamburguesa" value="Menu")
 
-        main  
+        main 
+            form(action="/search/" method="post" id="search-form")      
+                    label(for="title") Search for a movie:
+                    input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+                    button(type="submit") Search
+
             h1 Here are your films:
             for movie of movieDetails
                 article(class="search-list-card")

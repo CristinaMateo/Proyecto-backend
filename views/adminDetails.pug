@@ -14,6 +14,12 @@ html(lang="en")
                      
         main#details_container
 
+            form(action="/search/" method="post" id="search-form")      
+                        label(for="title") Search for a movie:
+                        input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+                        button(type="submit") Search
+
+
             article(class="detailCard") 
 
                 img(src=`${movieDetails.poster_path}` alt=`Poster for ${movieDetails.title}`)
