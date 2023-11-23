@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const port = 3000;
 require("dotenv").config();
-// const helmet = require("helmet")
+const cors = require('cors')
+//const helmet = require("helmet")
 
 
 const passport = require("passport");
@@ -13,8 +14,9 @@ const session = require("express-session");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cors({origin:'https://cdn.pixabay.com'}))
 // Use Helmet!
-// app.use(helmet());
+app.use(helmet());
 
 
 //Inicializamos passport y la session de passport

@@ -15,7 +15,7 @@ const extractOpinionData = async (url, browser) => {
       (review) => review.innerText
     );
 
-    console.log(opinionData, "*************************");
+    //console.log(opinionData, "*************************");
     return opinionData;
   } catch (err) {
     return { error: err.message };
@@ -35,8 +35,8 @@ const scrap = async (searchQuery) => {
     const opinionLinks = await page.$$eval(".rating-title", (links) =>
       links.map((link) => link.href)
     );
-    console.log(opinionLinks);
-    console.log(`${opinionLinks.length} links encontrados`);
+    //console.log(opinionLinks);
+    //console.log(`${opinionLinks.length} links encontrados`);
 
 
     for (const opinionLink of opinionLinks) {
@@ -45,7 +45,7 @@ const scrap = async (searchQuery) => {
     }
 
 
-    console.log(scrapedData, "Datos obtenidos:", scrapedData.length);
+    //console.log(scrapedData, "Datos obtenidos:", scrapedData.length);
 
     await browser.close();
 
