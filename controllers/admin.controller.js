@@ -35,8 +35,33 @@ const getForm = (req, res) => {
     res.render('createMovie.pug');
   }
 
+
+const showDetailedView = async (req, res) => {
+    const id = req.params.id;
+    // Primero hacemos busqueda en base de datos por ID
+    if (id.length > 20) {
+        let movieDetails =  await Movie.find({_id: id}, "-__v")
+        movieDetails = movieDetails[0];
+        console.log(movieDetails)
+        res.render("filmDetail", { movieDetails })
+    } else {
+        // Luego buscamos en API si no se obtienen resultados
+        movieDetails = await fetch.getMovieByID(id) // => devuelve un objeto
+        const staff = await fetch.getCrewInfobyID(id)
+        const crewInfo = staff.crew;
+        const directorObject = crewInfo.find(person => person.job == "Director")
+        const director = directorObject.name || "Unknown";
+        movieDetails.director = director
+        movieDetails.poster_path = `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
+        res.render("adminDetail", { movieDetails })
+    }
+    
+    
+}
+
 module.exports = {
     createMovie,
     getForm,
-    getSearchBar
+    getSearchBar,
+    showDetailedView
 }
