@@ -1,10 +1,17 @@
+
 const Movie = require('../models/admin.model');
-const fetch = require("../utils/fetch.js")
+const fetch = require("../utils/fetch.js");
+
 
 
 //mostrar form para crear peli
 const getForm = (req, res) => {
     res.render('createMovie.pug');
+}
+
+//mostrar form para update peli
+const getUpdateForm = (req, res) => {
+    res.render("updateForm.pug")
 }
 
 
@@ -49,7 +56,6 @@ const searchFilmsByTitle = (req, res) => {
     try {
         let movieDetails =  await Movie.find({title}, "-__v") // => devuelve [{pelicula}, {pelicula}]
         if (movieDetails.length != 0) {
-            console.log(movieDetails)
             res.render("admin-list-db", { movieDetails })
         } else {
             movieDetails = await fetch.getMovieDetails(title) // => devuelve [] con resultados
@@ -126,10 +132,28 @@ const showDetailedView = async (req, res) => {
         movieDetails.director = director
         movieDetails.poster_path = `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
         res.render("adminDetails", { movieDetails })
+    }   
+}
+
+
+const updateMovie = async (req, res) =>{
+    try{
+        let body = req.body;
+        let {title} = req.params
+        console.log("body", req.body);
+        await Movie.updateOne({title}, body)
+    res.render("peticionOK.pug")
+}
+    catch(error){
+        res.render("peticionNO.pug")
     }
-    
+};
+
+const deleteMovie = async (req, res) => {
+
     
 }
+
 
 module.exports = {
     createMovie,
@@ -137,5 +161,8 @@ module.exports = {
     getSearchBar,
     searchFilmsByTitle,
     showFilms,
-    showDetailedView
+    showDetailedView,
+    updateMovie,
+    getUpdateForm,
+    deleteMovie
 }

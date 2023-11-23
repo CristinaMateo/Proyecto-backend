@@ -8,6 +8,13 @@ html(lang="en")
         header
             h1(id="top") CoffeeMovie
         main
+
+        
+            h3 If you are not a member of out comunity you can also sign up or authenticate with
+
+            a(href="/auth/google") 
+                button(type='button') Authenticate with google
+                
             form(action="#" method="POST")
                 fieldset 
                     h4 Log in to our site
@@ -18,15 +25,10 @@ html(lang="en")
                     input(type="submit" value="Log in" id="log")
 
 
-            p(id="msgerr")
-
-            h3 If you are not a member of out comunity you can also sign up or authenticate with
-
-            a(href="/auth/google") Authenticate with google
-
             form(id ="form1" action="#" method="POST")
-                h3 Create an account 
+                
                 fieldset
+                    h3 Create an account 
                     label(for="email") Email:
                     input(type="email" id="email" name="email" placeholder="Introduce email...")
                     label(for="signup-user") Username:
