@@ -1,6 +1,5 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-require('dotenv').config();
 
 //Establecemos la estrategia de Google con los credenciales de nuestro proyecto
 passport.use(new GoogleStrategy({
@@ -22,3 +21,4 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (user, done) {
     done(null,user)
 });
+

@@ -4,9 +4,11 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
+        link(rel="stylesheet", href="./style.css") 
+
     body
         header
-            h1(id="top") CoffeeMovie
+            img(src="/assets/logoApi.png", alt="logo Api")
         main
             form(action="#" method="POST")
                 fieldset 
@@ -20,7 +22,7 @@ html(lang="en")
 
             p(id="msgerr")
 
-            h5 If you are not a member of out comunity you can also sign up or authenticate with
+            h3 If you are not a member of out comunity you can also sign up or authenticate with
 
             a(href="/auth/google") Authenticate with google
 
@@ -39,5 +41,6 @@ html(lang="en")
                     input(type="file" id="signup-picture" accept="image/*" name="image")
                     input(type="submit" value="Create" id="create")
 
-        footer
+        footer 
+            img(src="/assets/logoApi.png", alt="logo Api")
             

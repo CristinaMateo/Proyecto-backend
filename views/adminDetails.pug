@@ -5,19 +5,23 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
         //- link(rel="stylesheet", href="style.css")
-    body 
-
-         header 
+    body
+        header
             h1  CoffeeMovie
-            a(href="/menu")
-                input(type="button" id="menu_hamburguesa" value="Menu")
+                a(href="/menu")
+                    input(type="button" id="menu_hamburguesa" value="Menu")
 
-        main#details_container 
-        form(action="/search/" method="post" id="search-form")      
-            label(for="title") Search for a movie:
-            input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
-            button(type="submit") Search       
-    
+            
+                     
+        main#details_container
+
+            h3 Hello, admin
+
+            form(action="/search/" method="post" id="search-form")      
+                        label(for="title") Search for a movie:
+                        input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+                        button(type="submit") Search
+
 
             article(class="detailCard") 
 
@@ -31,6 +35,3 @@ html(lang="en")
                 button#rating  OPINIONS
 
         script(src="/js/script.js")
-         
-        footer 
-            img(src="assets/logoApi.png", alt="logo Api")

@@ -6,7 +6,7 @@ const searchControllers = require("../controllers/search.controllers.js")
 
 adminRouter.get("/search", adminController.getSearchBar)
 adminRouter.get("/search/:title", searchControllers.showFilms)
-adminRouter.get("/search/:id/details", searchControllers.showDetailedView)
+adminRouter.get("/search/:id/details", adminController.showDetailedView)
 adminRouter.get("/createMovieForm", adminController.getForm)
 adminRouter.post("/createMovie", adminController.createMovie)
 
