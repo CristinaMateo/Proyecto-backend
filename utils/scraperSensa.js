@@ -1,6 +1,15 @@
 // SCRAPER PARA SENSACINE:
 const puppeteer = require("puppeteer");
 
+
+/** 
+* @Author 
+* @method extractOpinionData - gets opionions from other websites
+* @async
+* @param req - url,browser
+* @throws {error}
+* @exports extractOpinionData
+*/
 // Función para extraer la información de cada comentario
 const extractOpinionData = async (url, browser) => {
   try {
@@ -22,6 +31,14 @@ const extractOpinionData = async (url, browser) => {
   }
 };
 
+/** 
+* @Author 
+* @method scrap - does scraping
+* @async 
+* @param req - searchQuery
+* @throws {error}
+* @exports scrap
+*/
 // Función principal para realizar el scraping
 const scrap = async (searchQuery) => {
   try {

@@ -17,6 +17,8 @@ const getMenu = (req, res) => {
 * @author Adrian Ortiz
 * @method getRecomendation - requests information from the mongo db or the API and sends it to a rendered pug file. 
 * @async
+* @throws {error}
+* @param req - email
 * @param res - the response, in this case, renders a pug file.
 * @exports getRecomendation
 */

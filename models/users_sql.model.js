@@ -9,6 +9,7 @@ const saltRounds = 10;
 * @method loginUser 
 * @async
 * @param req - email
+* @throws {error}
 * @return result
 * @exports loginUser
 */
@@ -33,6 +34,7 @@ const loginUser = async (email) => {
 * @method getUsersByEmail - gets a user from the database. 
 * @async
 * @param req - email
+* @throws {error}
 * @return result
 * @exports getUsersByEmail
 */
@@ -57,6 +59,7 @@ const getUsersByEmail = async (email) => {
 * @method createUser - creates a user in the database 
 * @async
 * @param req - email,username,password,image
+* @throws {error}
 * @return result
 * @exports createUser
 */
@@ -87,6 +90,7 @@ const createUser = async (infouser) => {
 * @method deleteUser - delete a user from the database 
 * @async
 * @param req - email
+* @throws {error}
 * @return result
 * @exports deleteUser
 */

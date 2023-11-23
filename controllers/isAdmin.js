@@ -1,7 +1,8 @@
 /** 
 * @author 
-* @method isAdmin - requests email. 
-* @return true or false.
+* @method isAdmin - check if role:admin
+* @param req - email
+* @return {boolean}
 * @exports isAdmin
 */
 const isAdmin =(email) =>{

@@ -4,6 +4,8 @@ const favMovieModel = require('../models/favmovie_sql.model');
 * @author 
 * @method getFavMovies - requests user email. Then gets the favourite movies of this user. 
 * @async
+* @throws {error}
+* @param req - email
 * @param res - the response, in this case, renders a pug file with the data from the database.
 * @exports getFavMovies
 */
@@ -22,6 +24,7 @@ const getFavMovies = async (req, res) => {
 * @author 
 * @method addFavMovies - requests information from the body. Then adds the favourite movie into the response. 
 * @async
+* @param req - email
 * @param res - the response, in this case, return status(201) with the item created.
 * @exports addFavMovies
 */

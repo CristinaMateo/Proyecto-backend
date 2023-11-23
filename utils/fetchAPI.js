@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 
 /** 
 * @Author Adrian Ortiz
-* @method getRecomendationInfoAPI - fetches data from the movie API
+* @method getRecomendationInfoAPI - fetches title and image from the movie API
 * @async
 * @return {object} - One object with the details of the movies found.
 * @exports getRecomendationInfoAPI

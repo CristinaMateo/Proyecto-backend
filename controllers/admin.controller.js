@@ -2,8 +2,10 @@ const {Movie} = require('../models/admin.model');
 
 /** 
 * @author 
-* @method createMovie - requests information from the body. Then creates the movie and sends it to a rendered pug file. 
+* @method createMovie - creates the movie and sends it to a rendered pug file. 
 * @async
+* @throws {error}
+* @param req - title,release_date,director,genre,poster_path,runtime,overview,cast,vote_average
 * @param res - the response, in this case, renders a pug file.
 * @exports createMovie
 */
@@ -60,6 +62,7 @@ const getForm = (req, res) => {
 * @author 
 * @method showDetailedView - requests by id in the database, if no results, in the API. 
 * @async
+* @param req - id
 * @param res - the response, in this case, renders a pug file.
 * @exports showDetailedView
 */

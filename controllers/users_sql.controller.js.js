@@ -2,7 +2,14 @@ const usersModel = require('../models/users_sql.model');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 
-
+/** 
+* @author
+* @method getUser 
+* @async
+* @param req - email,password
+* @param res - the response, in this case, returns a status (201) or (400)
+* @exports getUser
+*/
 // Read User
 const getUser = async (req, res) => {
     const { email, password } = req.body
@@ -45,9 +52,17 @@ const getUser = async (req, res) => {
     
 }
 
+/** 
+* @author 
+* @method createUser
+* @async
+* @param req - username,email,image
+* @param res - the response, in this case returns status(201) or (400)
+* @exports createUser
+*/
 // Create User
 const createUser = async (req, res) => {
-    const newUser = req.body; // {username,email,image}
+    const newUser = req.body;
     // console.log(newUser)
     if (newUser.password == newUser.password2) {
         const response = await usersModel.createUser(newUser); 
@@ -64,9 +79,17 @@ const createUser = async (req, res) => {
     }
 }
 
+/** 
+* @author 
+* @method deleteUser  
+* @async
+* @param req - email
+* @param res - the response, in this case returns status(201)
+* @exports deleteUser
+*/
 //DELETE
 const deleteUser = async (req, res) => {
-    const deleteUser = req.body; // {email}
+    const deleteUser = req.body;
     const response = await usersModel.deleteUser(deleteUser);
     res.status(201).json({
         "items_deleted": response,

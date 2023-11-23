@@ -6,6 +6,7 @@ const pool = require('../config/db_pgsql')//accede al fichero este que es el que
 * @method getFavMovies - gets favourite movies from database 
 * @async
 * @param req - email
+* @throws {error}
 * @return result
 * @exports getFavMovies
 */
@@ -30,6 +31,7 @@ const getFavMovies = async (email) => {
 * @method addFavMovies - adds to favourite movie in the database 
 * @async
 * @param req - title,genre,posterimg,email
+* @throws {error}
 * @return result
 * @exports addFavMovies
 */
@@ -55,6 +57,7 @@ const addFavMovie = async (infomovie) => {
 * @method deleteFromFav - deletes from favourite films
 * @async
 * @param req - title
+* @throws {error}
 * @return result
 * @exports deleteFromFav
 */
