@@ -7,18 +7,18 @@ html(lang="en")
         //- link(rel="stylesheet", href="style.css")
     body 
 
-        header
+         header 
             h1  CoffeeMovie
-                a(href="/menu")
-                    input(type="button" id="menu_hamburguesa" value="Menu")
-                    
-        main#details_container      
+            a(href="/menu")
+                input(type="button" id="menu_hamburguesa" value="Menu")
 
-            form(action="/search/" method="post" id="search-form")      
-                    label(for="title") Search for a movie:
-                    input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
-                    button(type="submit") Search
-  
+        main#details_container 
+        form(action="/search/" method="post" id="search-form")      
+            label(for="title") Search for a movie:
+            input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+            button(type="submit") Search       
+    
+
             article(class="detailCard") 
 
                 img(src=`${movieDetails.poster_path}` alt=`Poster for ${movieDetails.title}`)
@@ -31,4 +31,6 @@ html(lang="en")
                 button#rating  OPINIONS
 
         script(src="/js/script.js")
-
+         
+        footer 
+            img(src="assets/logoApi.png", alt="logo Api")
