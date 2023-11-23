@@ -15,10 +15,11 @@ html(lang="en")
 
         main  
 
-            form(action="/search/" method="post" id="search-form")      
-                        label(for="title") Search for a movie:
-                        input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
-                        button(type="submit") Search
+        form(action="/search/" method="post" id="search-form")      
+            label(for="title") Search for a movie:
+            input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+            button(type="submit") Search
+
 
             h1 Here are your films:
             for movie of movieDetails
@@ -33,6 +34,9 @@ html(lang="en")
                         h3 Runtime: #{movie.runtime}
                         //- input(class="addFav" type="submit") Add to My Movies
         script(src='/scripts/film-list.js')
+
+         footer 
+            img(src="assets/logoApi.png", alt="logo Api")
             
                         
                    

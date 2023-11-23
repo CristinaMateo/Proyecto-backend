@@ -9,8 +9,11 @@ html(lang="en")
             h1  CoffeeMovie
             input(type="button" id="menu_hamburguesa" value="Menu")
         main
-            form(action="/admin/search/" method="post" id="search-form")      
+            form(action="/search/" method="post" id="search-form")      
                 label(for="title") Search for a movie:
                 input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
                 button(type="submit") Search
             img(src="", alt="" id="color-img")
+
+    footer 
+        img(src="assets/logoApi.png", alt="logo Api")
