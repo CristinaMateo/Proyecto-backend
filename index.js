@@ -44,7 +44,7 @@ const authRoutes = require("./routes/oAuth.routes.js")
 const dashAndNav = require("./routes/dashAndNav.routes.js")
 
 //Rutas Template
-// app.use("/scraper", scraperRoute);
+app.use("/scraper", scraperRoute);
 app.use('/', loginRoutes);
 app.use('/', searchRoutes)
 app.use('/', dashAndNav)
