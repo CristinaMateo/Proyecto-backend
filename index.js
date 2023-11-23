@@ -35,6 +35,7 @@ app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 
 
 //rutas
+const scraperRouteFilma= require("./routes/scraper.routesFilma.js")
 const scraperRoute= require("./routes/scraper.routes.js")
 const loginRoutes = require("./routes/login.routes")
 const searchRoutes = require("./routes/search.routes.js")
@@ -45,6 +46,7 @@ const authRoutes = require("./routes/oAuth.routes.js")
 const dashAndNav = require("./routes/dashAndNav.routes.js")
 
 //Rutas Template
+// app.use("/scraperFilma", scraperRouteFilma);
 app.use("/scraper", scraperRoute);
 app.use('/', loginRoutes);
 app.use('/', searchRoutes)

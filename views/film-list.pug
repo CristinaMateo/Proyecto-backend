@@ -13,12 +13,11 @@ html(lang="en")
             a(href="/menu")
                 input(type="button" id="menu_hamburguesa" value="Menu")
 
-
         main  
-        form(action="/search/" method="post" id="search-form")      
-            label(for="title") Search for a movie:
-            input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
-            button(type="submit") Search
+            form(action="/search/" method="post" id="search-form")      
+                label(for="title") Search for a movie:
+                input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+                button(type="submit") Search
 
 
             h1 Here are your films:
@@ -35,7 +34,7 @@ html(lang="en")
                         //- input(class="addFav" type="submit") Add to My Movies
         script(src='/scripts/film-list.js')
 
-         footer 
+        footer 
             img(src="assets/logoApi.png", alt="logo Api")
             
                         

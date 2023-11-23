@@ -1,59 +1,55 @@
-// SCRAPER PARA SENSACINE:
+// // SCRAPER PARA SENSACINE:
 const puppeteer = require("puppeteer");
 
 // Función para extraer la información de cada comentario
 const extractOpinionData = async (url, browser) => {
-  try {
-    const opinionData = {};
+    try {
+        const opinionData = {};
 
-    const page = await browser.newPage();
-    await page.goto(url);
+        const page = await browser.newPage();
+        await page.goto(url);
 
-    // Modifica los selectores CSS según la estructura de la página web
-    opinionData["opinion"] = await page.$eval(
-      ".review-card-content",
-      (review) => review.innerText
-    );
+        // Modifica los selectores CSS según la estructura de la página web
+        opinionData["opinion"] = await page.$eval(
+            ".content-text",
+            (review) => review.innerHTML
+        );
 
-    console.log(opinionData, "*************************");
-    return opinionData;
-  } catch (err) {
-    return { error: err.message };
-  }
+        console.log(opinionData, "*************************");
+        return opinionData;
+    } catch (err) {
+        return { error: err.message };
+    }
 };
-
+extractOpinionData();
 // Función principal para realizar el scraping
 const scrap = async (searchQuery) => {
-  try {
-    const scrapedData = [];
+    try {
+        const scrapedData = [];
 
-    const browser = await puppeteer.launch({ headless: false });
-    const page = await browser.newPage();
-    await page.goto(`https://www.sensacine.com/buscar/?q=${searchQuery}`);
+        const browser = await puppeteer.launch({ headless: false });
+        const page = await browser.newPage();
+        await page.goto(`https://www.sensacine.com/buscar/?q=${searchQuery}`);
+        const botonCok = await page.waitForSelector("#didomi-notice-agree-button");
+        await botonCok.click();
 
-    await page.click(".meta-title-link");
-    const opinionLinks = await page.$$eval(".rating-title", (links) =>
-      links.map((link) => link.href)
-    );
-    console.log(opinionLinks);
-    console.log(`${opinionLinks.length} links encontrados`);
+        const linkprueba = await page.waitForSelector(".meta-title-link");
+        console.log(linkprueba);
+        await linkprueba.click();
 
+        await page.waitForSelector(".rating-title");
+        const usuarios = await page.waitForSelector(".rating-item:nth-child(2) a");
+        await usuarios.click();
 
-    for (const opinionLink of opinionLinks) {
-      const opinion = await extractOpinionData(opinionLink, browser);
-      scrapedData.push(opinion);
+        await page.waitForSelector(".content-txt.review-card-content");
+        const coment = await page.$$eval(".content-txt.review-card-content", function(opinions) {
+            return opinions.map(opinion => opinion.innerHTML) 
+        })
+        return coment.slice(0,4)
+    } catch (err) {
+        console.log("Error:", err.message);
     }
-
-
-    console.log(scrapedData, "Datos obtenidos:", scrapedData.length);
-
-    await browser.close();
-
-    return scrapedData;
-  } catch (err) {
-    console.log("Error:", err.message);
-  }
 };
 
 // Ejecuta la función de scraping con la consulta de búsqueda
-scrap("titanic").then((data) => console.log(data));
+scrap("titanic").then((data) => console.log("*******", data));

@@ -1,51 +1,76 @@
-// // // SCRAPER PARA FILMAFFINITY:
+// // // // SCRAPER PARA FILMAFFINITY:
 
-// async function openWebPage() {
-//     try {
-//         const browser = await puppeteer.launch({
-//             headless: false,
-//             slowMo: 100,
-//         });
-//         const page = await browser.newPage();
-//         await page.goto("https://www.filmaffinity.com/es/main.html");
-    
-//         //Aceptamos el popup de las cookies:
-//         await page.click('button[class=" css-v43ltw"]');
-    
-//         //Selector del input del buscador: "top-search-input-2"
-//         //Seleccionamos el input del buscador y buscamos una película (por ejemplo Titanic)
-//         await page.waitForSelector('input[id="top-search-input-2"]');
-//         await page.type('input[id="top-search-input-2"]', 'Titanic');
-//         //Presionamos enter
-//         await page.keyboard.press('Enter');
-//         //   await page.keyboard.press('Enter'); // Enter Key
-    
-//         //Hasta que no esté este selector, no se puede seguir:
-//         console.log('Accediendo al enlace...')
-//         await page.waitForSelector('a[href="https://www.filmaffinity.com/es/film814379.html"]');
-        
-//         console.log('Entrando en la película...')
-//         await page.click('a[href="https://www.filmaffinity.com/es/film814379.html"]');
-        
-  
-//         console.log('Mostrando las reviews de la película...')
-   
-//         const reviews = await page.$$eval('.pro-review', revs => {
-//             return revs.slice(0,3).map(rev => rev.innerText)
-//         })
-//         console.log(reviews)
-//         console.log('Reviews mostradas')
-        
-        
-//         //Cerramos el browser para terminar:
-//         await browser.close();
-//     } catch (err) {
-//         return{"Error":err}
-//     }
-// }
+// const puppeteer = require("puppeteer");
 
-// openWebPage();
+// // Función para extraer la información de cada comentario
+// const extractOpinionData = async (url, browser) => {
+//   try {
+//     const opinionData = {};
 
+//     const page = await browser.newPage();
+//     await page.goto(url);
+
+//     // Modifica los selectores CSS según la estructura de la página web
+//     opinionData["opinion"] = await page.$eval(
+//       ".content-text",
+//       (review) => review.innerHTML
+//     );
+
+//     console.log(opinionData, "*************************");
+//     return opinionData;
+//   } catch (err) {
+//     return { error: err.message };
+//   }
+// };
+// extractOpinionData();
+
+// // Función principal para realizar el scraping
+// const scrap = async (searchQuery) => {
+//   try {
+//     const scrapedData = [];
+
+//     const browser = await puppeteer.launch({ headless: false });
+//     const page = await browser.newPage();
+//     await page.goto(`https://www.filmaffinity.com/es/search.php?stext=titanic`);
+//     const botonCok = await page.waitForSelector(".css-v43ltw");
+//     botonCok.click();
+
+//     const linkprueba = await page.waitForSelector('div[class="mc-title"] a');
+//     console.log(linkprueba);
+//     linkprueba.click();
+
+//     const opinionLink = await page.$$eval(
+//       ".pro-reviews",
+//       (titles) => {
+//         console.log("+++++", titles);
+//        return  titles[1].href;
+//       }
+//     );
+//     page.goto(opinionLink);
+
+//     // const opinionLinks = await page.$$eval(".rating-title", (links) =>
+//     //   links.map((link) => link.href).filter(link => link.includes('espectadores'))
+//     // );
+//     // console.log(opinionLinks);
+//     // console.log(`${opinionLinks.length} links encontrados`);
+
+//     // for (const opinionLink of opinionLinks) {
+//     //   const opinion = await extractOpinionData(opinionLink, browser);
+//     //   scrapedData.push(opinion);
+//     // }
+
+//     // console.log(scrapedData, "Datos obtenidos:", scrapedData.length);
+
+//     // await browser.close();
+
+//     // return scrapedData;
+//   } catch (err) {
+//     console.log("Error:", err.message);
+//   }
+// };
+
+// // Ejecuta la función de scraping con la consulta de búsqueda
+// scrap("titanic").then((data) => console.log("*******", data));
 
 
 

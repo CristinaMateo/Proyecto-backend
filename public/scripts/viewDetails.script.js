@@ -23,3 +23,10 @@ function viewDetails() {
     .then((post) => {});
 }
 
+// Funcion botón 
+
+document.getElementById("rating").addEventListener("click",() => {
+
+  console.log("hola");
+
+})
