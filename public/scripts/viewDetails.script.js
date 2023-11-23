@@ -1,7 +1,8 @@
 // FUNCIÓN COGER DETALLES DE CADA PELÍCULA Y PINTARLO:
+const scrap = require("../../utils/scraperSensa")
+
 function viewDetails() {
   let = document.querySelector();
-
   fetch(
     `https://api.themoviedb.org/3/search/movie?query=titanic&api_key=1b1d8ac19d2157bc278dad11d08b1894/${
       (poster_path, title, vote_average)
@@ -22,6 +23,8 @@ function viewDetails() {
     .then((response) => response.json())
     .then((post) => {});
 }
+viewDetails();
+
 
 // Funcion botón 
 
