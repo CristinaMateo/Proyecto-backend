@@ -16,7 +16,7 @@ const getUpdateForm = (req, res) => {
 
 
 /** 
-* @author 
+* @author Cristina Mateo
 * @method createMovie - creates the movie and sends it to a rendered pug file. 
 * @async
 * @throws {error}
@@ -50,7 +50,7 @@ try{
 };
 
 /** 
-* @author 
+* @author Cristina Mateo
 * @method getSearchBar
 * @param res - the response, in this case, renders a pug file.
 * @exports getSearchBar
@@ -68,7 +68,7 @@ const searchFilmsByTitle = (req, res) => {
 }
 
 /** 
-* @author 
+* @author Cristina Mateo
 * @method getForm 
 * @param res - the response, in this case, renders a pug file.
 * @exports getForm
@@ -137,7 +137,7 @@ const searchFilmsByTitle = (req, res) => {
 }
 
 /** 
-* @author 
+* @author Antonio Mangado & Cristina Mateo
 * @method showDetailedView - requests by id in the database, if no results, in the API. 
 * @async
 * @param req - id
@@ -166,6 +166,14 @@ const showDetailedView = async (req, res) => {
     }   
 }
 
+/** 
+* @author Cristina Mateo
+* @method updateMovie - updates a movie in database. 
+* @async
+* @param req -title
+* @param res - the response renders a pug file to redirect to the search menu.
+* @exports updateMovie
+*/
 
 const updateMovie = async (req, res) =>{
     try{
@@ -179,15 +187,24 @@ const updateMovie = async (req, res) =>{
     }
 };
 
+/** 
+* @author Cristina Mateo
+* @method deleteMovie - updates a movie in database. 
+* @async
+* @param req -title
+* @param res - the response renders a pug file to redirect to the search menu.
+* @exports deleteMovie
+*/
+
 const deleteMovie = async (req, res) => {
     try{
         let title = req.body.title;
         console.log("title:", title)
         await Movie.deleteOne({title});
-    res.status(200).json({msg:"nice"})
+    res.render("peticionOK.pug")
     }
     catch(error){
-        res.status(500).json({msg:error})
+        res.render("peticionNO.pug")
     }
 }
 

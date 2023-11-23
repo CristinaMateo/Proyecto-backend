@@ -43,7 +43,7 @@ const users_sqlRoutes = require("./routes/users_sql.routes")
 const favmovie_sqlRoutes = require("./routes/favmovie_sql.routes")
 const adminRoutes = require("./routes/adminMongo.routes")
 const authRoutes = require("./routes/oAuth.routes.js")
-const dashAndNav = require("./routes/dashAndNav.routes.js")
+const dashAndNav = require("./routes/dash.routes.js")
 
 //Rutas Template
 // app.use("/scraper", scraperRoute);

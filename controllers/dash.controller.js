@@ -1,17 +1,7 @@
 const isAdmin = require('./isAdmin')
 const fetch = require('../utils/fetchAPI');
 
-/** 
-* @author Adrian Ortiz
-* @method getMenu 
-* @param res - the response, in this case, renders a pug file.
-* @exports getMenu
-*/
 
-const getMenu = (req, res) => {
-    res.render('navMenu.pug');
-    
-  }
 
 /** 
 * @author Adrian Ortiz
@@ -35,6 +25,5 @@ const getRecomendation = async (req, res) => {
 }
 
 module.exports = {
-    getRecomendation,
-    getMenu
+    getRecomendation
 }

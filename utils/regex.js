@@ -1,5 +1,5 @@
 /** 
-* @Author 
+* @author Antonio Mangado
 * @method validateEmail - validates email
 * @param req - email
 * @return {boolean} - true or false
@@ -11,7 +11,7 @@ const validateEmail = (email) => {
 };
 
 /** 
-* @Author 
+* @author Antonio Mangado
 * @method validatePassword - validates password
 * @param req - password
 * @return {boolean} - true or false
