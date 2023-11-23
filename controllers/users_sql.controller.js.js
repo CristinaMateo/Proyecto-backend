@@ -54,15 +54,8 @@ const createUser = async (req, res) => {
         const token = jwt.sign({email: newUser.email}, process.env.CLIENT_SECRET, {
             expiresIn: '60m'
         })
-
-        res.status(201).json({
-        "items_created": response,
-        token, 
-        data: {
-            username: newUser.username,
-            email: newUser.email
-        }
-        });
+        console.log({ username: newUser.username, email: newUser.email })
+        res.status(201).redirect("/");
     } else {
         res.status(400).json({
             msg: "The passwords do not match"

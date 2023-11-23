@@ -33,7 +33,6 @@ app.use(express.static(__dirname + '/public'));
 // Logger
 app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 
-
 //rutas
 // const scraperRoute= require("./routes/scraper.routes.js")
 const loginRoutes = require("./routes/login.routes")
