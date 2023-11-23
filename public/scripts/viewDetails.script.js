@@ -25,8 +25,4 @@ function viewDetails() {
 
 // Funcion botón 
 
-document.getElementById("rating").addEventListener("click",() => {
-
-  console.log("hola");
-
-})
+document.getElementById("rating").addEventListener("click",scrap)

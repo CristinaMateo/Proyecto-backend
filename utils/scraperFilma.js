@@ -1,4 +1,4 @@
-// // // // SCRAPER PARA FILMAFFINITY:
+// // SCRAPER PARA FILMAFFINITY:
 
 // const puppeteer = require("puppeteer");
 
@@ -48,28 +48,18 @@
 //     );
 //     page.goto(opinionLink);
 
-//     // const opinionLinks = await page.$$eval(".rating-title", (links) =>
-//     //   links.map((link) => link.href).filter(link => link.includes('espectadores'))
-//     // );
-//     // console.log(opinionLinks);
-//     // console.log(`${opinionLinks.length} links encontrados`);
+//     await page.waitForSelector("#pro-reviews > li:nth-child(1) > div > div:nth-child(1)");
+//     const coment = await page.$$eval("#pro-reviews > li:nth-child(1) > div > div:nth-child(1)", function(opinions) {
+//         return opinions.map(opinion => opinion.innerHTML) 
+//     })
+//     return coment.slice(0,4)
 
-//     // for (const opinionLink of opinionLinks) {
-//     //   const opinion = await extractOpinionData(opinionLink, browser);
-//     //   scrapedData.push(opinion);
-//     // }
-
-//     // console.log(scrapedData, "Datos obtenidos:", scrapedData.length);
-
-//     // await browser.close();
-
-//     // return scrapedData;
 //   } catch (err) {
 //     console.log("Error:", err.message);
 //   }
 // };
 
-// // Ejecuta la función de scraping con la consulta de búsqueda
+// // // Ejecuta la función de scraping con la consulta de búsqueda
 // scrap("titanic").then((data) => console.log("*******", data));
 
 
