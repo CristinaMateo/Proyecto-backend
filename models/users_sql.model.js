@@ -4,6 +4,21 @@ const regex = require('../utils/regex');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+const loginUser = async (email) => {
+    let client, result;
+    try {
+        client = await pool.connect()
+        const data = await client.query(queries.logUser, [email])
+        result = data.rows[0]
+    } catch (err) {
+        console.log(err);
+        throw err;
+    } finally {
+        client.release();
+    }
+    return result
+}
+
 const getUsersByEmail = async (email) => {
     let client, result;
     try {
@@ -61,5 +76,7 @@ const users = {
     getUsersByEmail,
     createUser,
     deleteUser,
+    loginUser
 }
+
 module.exports = users;
