@@ -1,6 +1,7 @@
 const usersModel = require('../models/users_sql.model');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
+const isAdmin = require("./isAdmin"); 
 
 // Read User
 const getUser = async (req, res) => {
@@ -10,10 +11,10 @@ const getUser = async (req, res) => {
         res.status(400).send("Please provide an email or password to log in!")
     } else {
         let user = await usersModel.getUsersByEmail(email);//esto accede a user.models y llama a esa funcion allí
-        console.log({
-            password: password,
-            hashPassword: user[0].password
-        })
+        // console.log({
+        //     password: password,
+        //     hashPassword: user[0].password
+        // })
         const hashPassword = user[0].password
         if(user.length = 0){
             res.status(400).json({ msg: 'Incorrect user or password'}); 
@@ -29,12 +30,21 @@ const getUser = async (req, res) => {
                 };
                 // console.log(userForToken)
                 const token = jwt.sign(userForToken, process.env.CLIENT_SECRET, {expiresIn: '60m'});
-                res
-                .status(200).render("dashboard")
-                // .json({
-                //     msg:'Correct authentication',
-                //     token: token})
-
+                //Almacenamos el token en las cookies
+                res.cookie("access-token", token, {
+                    httpOnly: true,
+                    sameSite: "strict",
+                })
+                res.cookie("logged-email", req.body.email,{
+                    httpOnly: true,
+                    sameSite: "strict",
+                })
+            
+                if(isAdmin(req.body.email)){
+                    res.redirect("/admin/search")
+                } else{
+                    res.render("dashboard");
+                }
             } else {
                 res.status(400).json({ msg: 'Incorrect user or password'});
             }

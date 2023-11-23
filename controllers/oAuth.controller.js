@@ -56,6 +56,7 @@ const logout =(req, res) => {
     req.logout(function (err) {
        if (err) { return next(err); }
        req.session.destroy();
+       res.clearCookie("logged-email");
        res.clearCookie("access-token").redirect('/login');
    });
    

@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 require("dotenv").config();
-const helmet = require("helmet")
+// const helmet = require("helmet")
 
 
 const passport = require("passport");
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Use Helmet!
-app.use(helmet());
+// app.use(helmet());
 
 
 //Inicializamos passport y la session de passport
