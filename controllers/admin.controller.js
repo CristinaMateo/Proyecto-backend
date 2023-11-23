@@ -15,6 +15,16 @@ const getUpdateForm = (req, res) => {
 }
 
 
+/** 
+* @author 
+* @method createMovie - creates the movie and sends it to a rendered pug file. 
+* @async
+* @throws {error}
+* @param req - title,release_date,director,genre,poster_path,runtime,overview,cast,vote_average
+* @param res - the response, in this case, renders a pug file.
+* @exports createMovie
+*/
+
 //Crear peli
 async function createMovie(req, res){
 try{
@@ -39,6 +49,13 @@ try{
    }
 };
 
+/** 
+* @author 
+* @method getSearchBar
+* @param res - the response, in this case, renders a pug file.
+* @exports getSearchBar
+*/
+
 //get search bar
 const getSearchBar =(req, res) => {
   res.render("adminSearch")
@@ -50,6 +67,12 @@ const searchFilmsByTitle = (req, res) => {
     res.redirect(`/admin/search/${title}`); //Redirigimos a search/:title    
 }
 
+/** 
+* @author 
+* @method getForm 
+* @param res - the response, in this case, renders a pug file.
+* @exports getForm
+*/
 
   const showFilms = async (req, res) => {
     const title = req.params.title;
@@ -113,6 +136,14 @@ const searchFilmsByTitle = (req, res) => {
     }
 }
 
+/** 
+* @author 
+* @method showDetailedView - requests by id in the database, if no results, in the API. 
+* @async
+* @param req - id
+* @param res - the response, in this case, renders a pug file.
+* @exports showDetailedView
+*/
 
 const showDetailedView = async (req, res) => {
     const id = req.params.id;

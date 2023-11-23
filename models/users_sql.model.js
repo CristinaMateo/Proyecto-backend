@@ -4,6 +4,16 @@ const regex = require('../utils/regex');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+/** 
+* @author 
+* @method loginUser 
+* @async
+* @param req - email
+* @throws {error}
+* @return result
+* @exports loginUser
+*/
+
 const loginUser = async (email) => {
     let client, result;
     try {
@@ -19,6 +29,16 @@ const loginUser = async (email) => {
     return result
 }
 
+/** 
+* @author 
+* @method getUsersByEmail - gets a user from the database. 
+* @async
+* @param req - email
+* @throws {error}
+* @return result
+* @exports getUsersByEmail
+*/
+
 const getUsersByEmail = async (email) => {
     let client, result;
     try {
@@ -33,6 +53,16 @@ const getUsersByEmail = async (email) => {
     }
     return result
 }
+
+/** 
+* @author 
+* @method createUser - creates a user in the database 
+* @async
+* @param req - email,username,password,image
+* @throws {error}
+* @return result
+* @exports createUser
+*/
 
 const createUser = async (infouser) => {
     const { email, username, password, password2, image } = infouser;
@@ -54,6 +84,16 @@ const createUser = async (infouser) => {
     }
     return result
 }
+
+/** 
+* @author 
+* @method deleteUser - delete a user from the database 
+* @async
+* @param req - email
+* @throws {error}
+* @return result
+* @exports deleteUser
+*/
 
 // DELETE
 const deleteUser = async (infouser) => {
