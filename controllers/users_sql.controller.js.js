@@ -27,14 +27,15 @@ const getUser = async (req, res) => {
                     email: data.email,
                     username: data.username,
                 };
-                console.log(userForToken)
+                // console.log(userForToken)
                 const token = jwt.sign(userForToken, process.env.CLIENT_SECRET, {expiresIn: '60m'});
                 res
-                .status(200)
-                .json({
-                    msg:'Correct authentication',
-                    token: token});
-            }else {
+                .status(200).render("dashboard")
+                // .json({
+                //     msg:'Correct authentication',
+                //     token: token})
+
+            } else {
                 res.status(400).json({ msg: 'Incorrect user or password'});
             }
         }       

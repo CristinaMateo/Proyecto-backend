@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 const util = require("util")
 
-const protect = async () => {
+const protectView = async () => {
     // Read the token and check if it exists
     const testToken = req.headers.authorization
     let token;
@@ -25,6 +25,6 @@ const protect = async () => {
 }
 
 module.exports = {
-    protect
+    protectView
 }
     
