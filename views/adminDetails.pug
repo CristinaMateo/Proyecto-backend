@@ -5,14 +5,15 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
         //- link(rel="stylesheet", href="style.css")
-    body 
-
+    body
         header
             h1  CoffeeMovie
                 a(href="/menu")
                     input(type="button" id="menu_hamburguesa" value="Menu")
-                    
-        main#details_container        
+            h3 Hello, admin
+                     
+        main#details_container
+
             article(class="detailCard") 
 
                 img(src=`${movieDetails.poster_path}` alt=`Poster for ${movieDetails.title}`)
@@ -25,4 +26,3 @@ html(lang="en")
                 button#rating  OPINIONS
 
         script(src="/js/script.js")
-

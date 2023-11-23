@@ -9,7 +9,7 @@ module.exports = {
         try {
 
             const opinion = await scraper.scrap("href=https://www.sensacine.com/peliculas/pelicula-206799/criticas-espectadores"); 
-            console.log(opinion);
+            
             res.status(200).json(opinion);
 
         } catch (error) {
