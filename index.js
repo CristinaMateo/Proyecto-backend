@@ -24,8 +24,8 @@ const morgan = require('./middlewares/morgan')
 
 
 //habilita acceso a public
+app.use(express.static(__dirname + '/public'));
 
-// app.use(express.static(__dirname + '/public'));
 // Logger
 app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 
