@@ -120,7 +120,7 @@ const showDetailedView = async (req, res) => {
     if (id.length > 20) {
         let movieDetails =  await Movie.find({_id: id}, "-__v")
         movieDetails = movieDetails[0];
-        console.log(movieDetails)
+        
         res.render("adminDetails", { movieDetails })
     } else {
         // Luego buscamos en API si no se obtienen resultados
@@ -140,7 +140,6 @@ const updateMovie = async (req, res) =>{
     try{
         let body = req.body;
         let {title} = req.params
-        console.log("body", req.body);
         await Movie.updateOne({title}, body)
     res.render("peticionOK.pug")
 }
@@ -150,8 +149,15 @@ const updateMovie = async (req, res) =>{
 };
 
 const deleteMovie = async (req, res) => {
-
-    
+    try{
+        let title = req.body.title;
+        console.log("title:", title)
+        await Movie.deleteOne({title});
+    res.status(200).json({msg:"nice"})
+    }
+    catch(error){
+        res.status(500).json({msg:error})
+    }
 }
 
 

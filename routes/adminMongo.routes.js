@@ -11,7 +11,7 @@ adminRouter.get("/createMovieForm", adminController.getForm)
 adminRouter.post("/createMovie", adminController.createMovie)
 adminRouter.get("/updateMovieForm", adminController.getUpdateForm)
 adminRouter.put("/updateMovie/:title", adminController.updateMovie)
-adminRouter.delete("/deleteMovie",adminController.deleteMovie)
+adminRouter.delete("/deleteMovie/:title",adminController.deleteMovie)
 
 
 module.exports = adminRouter;
