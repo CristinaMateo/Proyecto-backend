@@ -16,13 +16,22 @@ html(lang="en")
         main#details_container
 
             h3 Hello, admin
+            
+            h5 If you want to change any detail:
+            a(href="/admin/updateMovie/:title")
+                button(type='button') Update this movie
+            a(href='/admin/createMovieForm') 
+                button(type='button') Add a Movie
+            p Remember you may only be able to change the movie's details if you created it on out database. Add a movie if you didn't.
+            
+            
 
-            form(action="/search/" method="post" id="search-form")      
+            form(action="/admin/search/" method="post" id="search-form")      
                         label(for="title") Search for a movie:
                         input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
                         button(type="submit") Search
 
-
+            br
             article(class="detailCard") 
 
                 img(src=`${movieDetails.poster_path}` alt=`Poster for ${movieDetails.title}`)

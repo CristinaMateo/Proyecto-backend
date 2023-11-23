@@ -16,7 +16,7 @@ html(lang="en")
             section 
                 p Hello, #{email}
 
-            form(action="/search/" method="post" id="search-form")      
+            form(action="/admin/search/" method="post" id="search-form")      
                 label(for="title") Search for a movie:
                 input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
                 button(type="submit") Search
