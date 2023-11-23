@@ -23,8 +23,8 @@ A continuación, algunas capturas de pantalla de CoffeeMovie:
 1. **Página de Inicio**
    ![Página de Inicio](capturas/inicio.png)
 
-2. **Exploración por Género**
-   ![Exploración por Género](capturas/exploracion_genero.png)
+2. **Exploración por Nombre**
+   ![Exploración por Título](capturas/exploracion_título.png)
 
 3. **Perfil de Usuario**
    ![Perfil de Usuario](capturas/menu_ham.png)
