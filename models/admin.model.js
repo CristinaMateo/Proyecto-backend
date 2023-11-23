@@ -33,8 +33,9 @@ const result = await movie.save();
 console.log(result);
 }
 
+
 module.exports = {
-    createMovie,
+    createMovie
 }
 
 module.exports = Movie

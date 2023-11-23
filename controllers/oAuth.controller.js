@@ -19,7 +19,7 @@ const Success = (req, res) => {
     check: true
     };
     const token = jwt.sign(payload, `secret_key`, {
-        expiresIn: "20m"
+        expiresIn: "60m"
     });
 
     //Almacenamos el token en las cookies
@@ -56,6 +56,7 @@ const logout =(req, res) => {
     req.logout(function (err) {
        if (err) { return next(err); }
        req.session.destroy();
+       res.clearCookie("logged-email");
        res.clearCookie("access-token").redirect('/login');
    });
    

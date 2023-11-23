@@ -14,9 +14,9 @@ html(lang="en")
         main 
 
             section 
-                p Hello, #{email}
+                p Hello, admin
 
-            form(action="/search/" method="post" id="search-form")      
+            form(action="/admin/search/" method="post" id="search-form")      
                 label(for="title") Search for a movie:
                 input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
                 button(type="submit") Search
@@ -25,7 +25,14 @@ html(lang="en")
             a(href='/admin/createMovieForm') 
                 button(type='button') Add a Movie
 
+
+            a(href="/logout" id="logoutNav")  
+                        button(type='button') LOG OUT
+
+            
+
     footer 
         img(src="assets/logoApi.png", alt="logo Api")
     
+
 
