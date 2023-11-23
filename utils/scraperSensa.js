@@ -50,5 +50,6 @@ const scrap = async (searchQuery) => {
     }
 };
 
+module.exports = scrap
 // Ejecuta la función de scraping con la consulta de búsqueda
-scrap("titanic").then((data) => console.log("*******", data));
+// scrap("titanic").then((data) => console.log("*******", data));
