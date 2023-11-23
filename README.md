@@ -27,7 +27,7 @@ A continuación, algunas capturas de pantalla de CoffeeMovie:
    ![Exploración por Género](capturas/exploracion_genero.png)
 
 3. **Perfil de Usuario**
-   ![Perfil de Usuario](capturas/perfil_usuario.png)
+   ![Perfil de Usuario](capturas/menu_ham.png)
 
 4. **Autenticación con Google**
    ![Autenticación con Google](capturas/google_auth.png)
