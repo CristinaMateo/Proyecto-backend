@@ -8,11 +8,7 @@ html(lang="en")
         
     body
 
-        header 
-             img(src="/assets/logoWeb.jpg", alt="logo Web")
-            a(href="/menu")
-                input(type="button" id="menu_hamburguesa" value="Menu")
-
+        include ./header.pug
         main  
 
         form(action="/search/" method="post" id="search-form")      
@@ -35,8 +31,7 @@ html(lang="en")
                         //- input(class="addFav" type="submit") Add to My Movies
         script(src='/scripts/film-list.js')
 
-         footer 
-            img(src="assets/logoApi.png", alt="logo Api")
+         
             
                         
                    

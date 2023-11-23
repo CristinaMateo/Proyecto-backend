@@ -4,14 +4,10 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title CoffeeMovie
-        link(rel="stylesheet", href="./style.css") 
+        link(rel="stylesheet", href="/style.css") 
     body
 
-        header 
-            img(src="/assets/logoWeb.jpg", alt="logo Web")
-            a(href="/menu")
-                input(type="button" id="menu_hamburguesa" value="Menu")
-
+        include ./header.pug
 
         main
             h3 These are your favourite movies so far:
@@ -23,5 +19,4 @@ html(lang="en")
                         p #{movie.genre}
                         img(src=movie.posterimg)
 
-     footer 
-        img(src="assets/logoApi.png", alt="logo Api")
+     include ./footer.pug
