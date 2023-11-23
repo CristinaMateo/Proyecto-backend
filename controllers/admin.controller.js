@@ -2,13 +2,24 @@
 const Movie = require('../models/admin.model');
 const fetch = require("../utils/fetch.js");
 
-
+/** 
+* @author Cristina Mateo
+* @method getForm 
+* @param res - the response, in this case, renders a pug file.
+* @exports getForm
+*/
 
 //mostrar form para crear peli
 const getForm = (req, res) => {
     res.render('createMovie.pug');
 }
 
+/** 
+* @author Cristina Mateo
+* @method getUpdateForm 
+* @param res - the response, in this case, renders a pug file.
+* @exports getUpdateForm
+*/
 //mostrar form para update peli
 const getUpdateForm = (req, res) => {
     res.render("updateForm.pug")
@@ -68,10 +79,10 @@ const searchFilmsByTitle = (req, res) => {
 }
 
 /** 
-* @author Cristina Mateo
-* @method getForm 
-* @param res - the response, in this case, renders a pug file.
-* @exports getForm
+* @author Antonio Mangado
+* @method showFilms
+* @param res - the response, in this case, renders a pug file with a list of the searched movie and it's versions in the database.
+* @exports showFilms
 */
 
   const showFilms = async (req, res) => {
