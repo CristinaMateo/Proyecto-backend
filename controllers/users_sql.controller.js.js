@@ -2,6 +2,7 @@ const usersModel = require('../models/users_sql.model');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 
+
 // Read User
 const getUser = async (req, res) => {
     const { email, password } = req.body

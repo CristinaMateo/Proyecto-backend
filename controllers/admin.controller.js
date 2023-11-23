@@ -1,5 +1,13 @@
 const {Movie} = require('../models/admin.model');
 
+/** 
+* @author 
+* @method createMovie - requests information from the body. Then creates the movie and sends it to a rendered pug file. 
+* @async
+* @param res - the response, in this case, renders a pug file.
+* @exports createMovie
+*/
+
 //Crear peli
 async function createMovie(req, res){
 try{
@@ -24,17 +32,37 @@ try{
    }
 };
 
+/** 
+* @author 
+* @method getSearchBar
+* @param res - the response, in this case, renders a pug file.
+* @exports getSearchBar
+*/
+
 //get search bar
 const getSearchBar =(req, res) => {
   res.render("adminSearch", {email: req.user.emails[0].value, user: req.user.displayName})
 }
 
+/** 
+* @author 
+* @method getForm 
+* @param res - the response, in this case, renders a pug file.
+* @exports getForm
+*/
 
 //mostrar form para crear peli
 const getForm = (req, res) => {
     res.render('createMovie.pug');
   }
 
+/** 
+* @author 
+* @method showDetailedView - requests by id in the database, if no results, in the API. 
+* @async
+* @param res - the response, in this case, renders a pug file.
+* @exports showDetailedView
+*/
 
 const showDetailedView = async (req, res) => {
     const id = req.params.id;

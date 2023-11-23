@@ -17,6 +17,14 @@ const movieSchema = connection.Schema(objectSchema);
 // Crear el modelo
 const Movie = connection.model('Movie', movieSchema);
 
+/** 
+* @author 
+* @method createMovie - creates a movie that is not in the database or API 
+* @async
+* @param req - title,release_date,director,genre,poster_path,runtime,overview,cast,vote_average
+* @exports createMovie
+*/
+
 async function createMovie(title, release_date, director, genre, poster_path, runtime, overview, cast, vote_average) {
     const movie = new Movie({
         title, 
