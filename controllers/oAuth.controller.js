@@ -19,7 +19,7 @@ const Success = (req, res) => {
     check: true
     };
     const token = jwt.sign(payload, `secret_key`, {
-        expiresIn: "20m"
+        expiresIn: "60m"
     });
 
     //Almacenamos el token en las cookies
