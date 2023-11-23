@@ -1,7 +1,23 @@
+/*general*/
+:root {
+  --ashgray: #ABC4AB;
+  --lion: #A39171;
+  --khaki:#C0AD94;
+  --jasmine:#EACC72;
+  --dun:#DCC9B6;
+  --green:#727D71;
+  --walnut:#706557;
+  --coffee:#6D4C3D;
+  --white:#ffffff;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
   }
   
 
@@ -9,32 +25,36 @@
 
   body {
     font-family: 'Arial', sans-serif;
-    background-color: #abc4ab; 
-    color: #6d4c3d; 
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--coffee);
+    background-color: var(--dun);
   }
-  
+
   header {
-    background-color: #a39171; 
+    background-color: var(--coffee); 
     padding: 1rem;
     text-align: center;
-    color: #fff; 
+    color: var(--white); 
   }
-  
-  h1 {
-    font-size: 2rem;
+  main {
+    padding: 2rem;
   }
+
+  img{
+    width: 70%
+  }
+
   
   #menu_hamburguesa {
-    background-color: #a39171; 
-    color: #fff; 
+    background-color: var(--lion); 
+    color: var(--white); 
     padding: 0.5rem 1rem;
     border: none;
     cursor: pointer;
   }
   
-  main {
-    padding: 2rem;
-  }
+
   
   .routeButtons {
     display: flex;
@@ -43,101 +63,80 @@
   }
   
   button {
-    background-color: #b29f83; 
-    color: #fff; 
+    background-color: var(--jasmine); 
+    color: var(--coffee); 
     padding: 0.5rem 1rem;
     border: none;
     cursor: pointer;
+    margin: 5px auto;
   }
   
   #searchButton:hover, #favoriteButton:hover {
-    background-color: #c0ad94; 
+    background-color: var(--khaki); 
   }
   
   #recomendation {
-    background-color: #dcc9b6; 
+    background-color: var(--dun); 
     padding: 1rem;
     margin-top: 1rem;
   }
   
   footer {
-    background-color: #706557; 
+    background-color: var(--walnut); 
     padding: 1rem;
     text-align: center;
   }
-  
-
-/* LOG PAGE */
-
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #B29F83; 
-    color: #6d4c3d; 
-  }
-  
-  header {
-    background-color: #6D4C3D; 
-    padding: 1rem;
-    text-align: center;
-    color: #fff; 
-  }
-  
-  h1 {
-    font-size: 2rem;
-    margin: 0;
-  }
-  
-  main {
-    padding: 2rem;
-  }
+ 
   
   form {
     max-width: 400px;
     margin: 0 auto;
-    background-color: #ABC4AB;
+    background-color: var(--ashgray);
   }
   
   fieldset {
-    border: 1px solid #272626; 
+    border: 1px solid black; 
     margin-bottom: 1rem;
     padding: 1rem;
     border-radius: 8px;
   }
   
   h4, h5 {
-    color: #727d71; 
+    color: var(--green); 
   }
   
   label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #706557;
+    color: var(--walnut);
   }
   
   input {
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
-    border: 1px solid #b29f83; /* Borde para los inputs */
+    border: 1px solid var(--lion); /* Borde para los inputs */
     border-radius: 4px; /* Esquinas redondeadas */
   }
   
   input[type="submit"] {
-    background-color: #b29f83; 
+    background-color: var(--lion); 
     color: #fff; 
     cursor: pointer;
   }
   
   input[type="submit"]:hover {
-    background-color: #c0ad94; 
+    background-color: var(--khaki); 
   }
   
   a {
-    color: rgb(41, 10, 218); 
+    text-decoration: none;
+    background-color: var(--jasmine);
+    color: black;
   }
   
   footer {
-    background-color: #706557; 
+    background-color: var(--walnut); 
     padding: 1rem;
     text-align: center;
   }
