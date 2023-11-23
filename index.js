@@ -25,7 +25,7 @@ const morgan = require('./middlewares/morgan')
 
 //habilita acceso a public
 
-// app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 // Logger
 app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 
@@ -41,10 +41,10 @@ const searchRoutes = require("./routes/search.routes.js")
 //const favmovie_sqlRoutes = require("./routes/favmovie_sql.routes")
 const adminRoutes = require("./routes/adminMongo.routes")
 const authRoutes = require("./routes/oAuth.routes.js")
-const dashAndNav = requiere("./routes/dashAndNav.routes.js")
+const dashAndNav = require("./routes/dashAndNav.routes.js")
 
 //Rutas Template
-app.use("/scraper", scraperRoute);
+// app.use("/scraper", scraperRoute);
 app.use('/', loginRoutes);
 app.use('/', searchRoutes)
 app.use('/', dashAndNav)
