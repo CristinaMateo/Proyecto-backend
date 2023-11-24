@@ -1,0 +1,41 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title CoffeeMovie
+        link(rel="stylesheet", href="/style.css")
+        
+    body
+
+        include ./header.pug
+        main  
+
+        form(action="/search/" method="post" id="search-form")      
+            label(for="title") Search for a movie:
+            input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+            button(type="submit") Search
+
+
+            h1 Here are your films:
+            for movie of movieDetails
+                article(class="search-list-card")
+                    button(class="detail-btn")
+                        h2 #{movie.title}
+                        img(src=`${movie.poster_path}` alt=`Poster for ${movie.title}`)
+                        h3 Release date: #{movie.release_date}
+                        h3(hidden) #{movie._id} 
+                        h3 Director: #{movie.director}
+                        h3 Genre: #{movie.genre}
+                        h3 Runtime: #{movie.runtime}
+                        //- input(class="addFav" type="submit") Add to My Movies
+        script(src='/scripts/film-list.js')
+
+         
+            
+                        
+                   
+
+                    
+
+

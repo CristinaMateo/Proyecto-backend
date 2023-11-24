@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title CoffeeMovie
+        link(rel="stylesheet", href="/style.css") 
+    body
+
+        include ./adminheader.pug
+           
+        main 
+
+            section 
+                p Hello, admin
+
+            form(action="/admin/search/" method="post" id="search-form")      
+                label(for="title") Search for a movie:
+                input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+                button(type="submit") Search
+            
+
+            a(href='/admin/createMovieForm') 
+                button(type='button') Add a Movie
+
+
+            
+
+            
+
+        include ./footer.pug
+    
+
+

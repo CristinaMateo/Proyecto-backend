@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title CoffeeMovie
+        link(rel="stylesheet", href="/style.css")
+    body 
+
+        include ./header.pug
+        main#details_container 
+            form(action="/search/" method="post" id="search-form")      
+                label(for="title") Search for a movie:
+                input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+                button(type="submit") Search       
+    
+
+            article(class="detailCard") 
+
+                img(src=`${movieDetails.poster_path}` alt=`Poster for ${movieDetails.title}`)
+                p Name: #{movieDetails.title}
+                p Runtime: #{movieDetails.runtime}
+                p Director: #{movieDetails.director}
+                p Overview: #{movieDetails.overview}
+                p Ratings: #{movieDetails.vote_average}
+
+                button#rating  OPINIONS
+        include ./footer.pug
+        
+        script(src="/js/script.js")
+         
+        

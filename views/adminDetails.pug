@@ -1,0 +1,47 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title CoffeeMovie
+        link(rel="stylesheet", href="/style.css") 
+    body
+        include ./adminheader.pug    
+        main#details_container
+
+            h3 Hello, admin
+            
+            a(href='/admin/createMovieForm') 
+                button(type='button') Add a Movie
+             
+            p Remember you may only be able to change the movie's details or delete it if you created it on our database. Add a movie if you didn't.
+            
+            
+            form(action="/admin/search/" method="post" id="search-form")      
+                        label(for="title") Search for a movie:
+                        input(type="text" id="search-bar" name="title" placeholder="Your movie here..." required)
+                        button(type="submit") Search
+
+            br
+            article(class="detailCard") 
+
+                img(src=`${movieDetails.poster_path}` alt=`Poster for ${movieDetails.title}`)
+                p(id="title") Name: #{movieDetails.title}
+                p Runtime: #{movieDetails.runtime}
+                p Director: #{movieDetails.director}
+                p Overview: #{movieDetails.overview}
+                p Ratings: #{movieDetails.vote_average}
+
+                button(id="delete") Delete this movie
+
+                h5 If you want to change any detail:
+                a(href="/admin/updateMovieForm")
+                    button(type='button') Update this movie
+
+                button#rating  OPINIONS
+                
+        include ./footer.pug
+        
+        script(src="/scripts/scriptDelete.js") 
+
+        

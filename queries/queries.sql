@@ -26,6 +26,9 @@ VALUES
 DELETE FROM users
 WHERE email =$1;
 
+--loguear al usuario
+
+
 
 -- Insertar datos en tabla favmovies (añadir una peli a favoritos)
 INSERT INTO favmovies(title,genre, posterimg, user_id) 
@@ -43,3 +46,15 @@ WHERE u.email = $1;
 --eliminar una película de favoritos
 DELETE FROM favmovies
     WHERE title =$1;
+
+-- updatear tabla users para que tenga la columna 'logged' con valor 'false' por defecto
+ALTER TABLE users
+ADD logged boolean NOT NULL
+CONSTRAINT makeDefault
+DEFAULT false
+
+-- updatear tabala users para que tenga una columna admin con false por defecto
+ALTER TABLE users
+ADD admin boolean NOT NULL
+CONSTRAINT defaultValue
+DEFAULT false

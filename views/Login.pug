@@ -3,42 +3,43 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
+        title CoffeeMovie
+        link(rel="stylesheet", href="/style.css") 
+
     body
         header
-            h1(id="top") CoffeeMovie
+            img(src="/assets/logoWeb.jpg", alt="logo Web",class="headerimg")
         main
+            h3 If you are not a member of out comunity you can also sign up or authenticate with
+
+            a(href="/auth/google") 
+                button(type='button') Authenticate with google
+                
             form(action="#" method="POST")
                 fieldset 
                     h4 Log in to our site
                     label(for="email") Email 
                     input(type="email", placeholder="Introduce email", name="email", id="log_mail")
                     label(for="password") Password 
-                    input(type="text", placeholder="Introduce password", name="password", id="log_pass")
+                    input(type="password", placeholder="Introduce password", name="password", id="log_pass")
                     input(type="submit" value="Log in" id="log")
 
-            p(id="msgerr")
 
-            h5 If you are not a member of out comunity you can also: 
 
-            button(id="sign-button") Sign up
-            button(id="guest") Continue as guest
-
-            form(id ="form1" action="#" method="POST")
-                h3 Create an account 
+            form(id ="form1" action="/addUser" method="POST")
                 fieldset
+                    h3 Create an account 
                     label(for="email") Email:
                     input(type="email" id="email" name="email" placeholder="Introduce email...")
-                    label(for="signup-user") Username:
-                    input(type="text" id="signup-user" name="signup-user" placeholder ="Username")
-                    label(for="pass") Password
-                    input(type="password" id="pass" name="pass" placeholder="Introduce password...")
+                    label(for="username") Username:
+                    input(type="text" id="username" name="username" placeholder ="Username")
+                    label(for="password") Password
+                    input(type="password" id="password" name="password" placeholder="Introduce password...")
                     label(for="pass2") Repeat password:
-                    input(type="password" id="pass2" name="pass2" placeholder="Repite password...")
-                    label(for="signup-picture") Picture:
-                    input(type="file" id="signup-picture" accept="image/*" name="signup-picture")
+                    input(type="password" id="password2" name="password2" placeholder="Repite password...")
+                    label(for="image") Picture:
+                    input(type="file" id="signup-picture" accept="image/*" name="image")
                     input(type="submit" value="Create" id="create")
 
-        footer
-            div(class="top")
-                a(href="#top") Back to top
+        
+            

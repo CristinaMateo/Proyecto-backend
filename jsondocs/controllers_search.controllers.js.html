@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/search.controllers.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/search.controllers.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const fetch = require("../utils/fetch.js")
+const Movie = require("../models/admin.model.js")
+
+
+// Controlador para mostrar la view "Search-Bar"
+const showSearchBar = (req, res) => {
+    res.render("search-bar")
+}
+
+
+// Controlador para el formulario tipo POST
+const searchFilmsByTitle = (req, res) => {
+    const title = req.body.title;
+    res.redirect(`/search/${title}`); //Redirigimos a search/:title    
+}
+
+/** 
+* @Author Antonio Mangado
+* @function showFilms - requests information from the mongo db or the API. Then manipulates the data and sends it to a rendered pug file.
+* @async
+* @param {string} req - the body of the POST form, contains a title to be used in later functions
+* @param res - the response, in this case, renders a pug file.
+*/
+const showFilms = async (req, res) => {
+    const title = req.params.title;
+    try {
+        let movieDetails =  await Movie.find({title}, "-__v") // => devuelve [{pelicula}, {pelicula}]
+        if (movieDetails.length != 0) {
+            console.log(movieDetails)
+            res.render("film-list-db", { movieDetails })
+        } else {
+            movieDetails = await fetch.getMovieDetails(title) // => devuelve [] con resultados
+            const ids = movieDetails.map(movie => movie.id)
+            const getStaff = async function () {
+                let director = []
+                for await (const id of ids) {
+                    const staff = await fetch.getCrewInfobyID(id)
+                    const crewInfo = staff.crew;
+                    const directorObject = crewInfo.find(person => person.job == "Director")
+                    if (directorObject) {
+                        const directorName = directorObject.name || "Unknown";
+                        director.push(directorName)
+                    } else {
+                        director.push("Unknown director")
+                    }
+                }
+                return director
+            };
+
+            const getRunTimeAndGenre = async function () {
+                let runTimes = [];
+                let genre = [];
+                for await (const id of ids) {
+                    const movie = await fetch.getMovieByID(id)
+                    if (movie.genres.length > 0) {
+                        const genreName = movie.genres[0].name
+                        genre.push(genreName)
+                    } else {
+                        genre.push("Unknown Genre")
+                    }
+
+                    const time = movie.runtime
+                    if (time == 0) {
+                        runTimes.push("No data")
+                    } else {
+                        runTimes.push(time) 
+                    }
+                }
+                return { runTimes, genre }
+            };
+            const directors =  await getStaff()
+            const genreAndRuntime = await getRunTimeAndGenre()
+            for (let i = 0; i &lt; directors.length; i++) {
+                movieDetails[i].director = directors[i]
+                movieDetails[i].runtime = genreAndRuntime.runTimes[i]
+                movieDetails[i].genre = genreAndRuntime.genre[i]
+            }
+            res.render("film-list", { movieDetails })
+                }
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(400).json({msj:`ERROR: ${error.stack}`});
+    }
+}
+
+/** 
+* @Author Antonio Mangado
+* @function showDetailedView - a function that executes once the user accesses the route /search/:id/details. It shows a detailed view of the film clicked.
+* @async
+* @param {string/number} req - to use req.params.id to obtain the id of the film clicked on.
+* @param res - the response, in this case, renders a pug file.
+*/
+const showDetailedView = async (req, res) => {
+    const id = req.params.id;
+    // Primero hacemos busqueda en base de datos por ID
+    if (id.length > 20) {
+        let movieDetails =  await Movie.find({_id: id}, "-__v")
+        movieDetails = movieDetails[0];
+        console.log(movieDetails)
+        res.render("filmDetail", { movieDetails })
+    } else {
+        // Luego buscamos en API si no se obtienen resultados
+        movieDetails = await fetch.getMovieByID(id) // => devuelve un objeto
+        const staff = await fetch.getCrewInfobyID(id)
+        const crewInfo = staff.crew;
+        const directorObject = crewInfo.find(person => person.job == "Director")
+        const director = directorObject.name || "Unknown";
+        movieDetails.director = director
+        movieDetails.poster_path = `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
+        res.render("filmDetail", { movieDetails })
+    }
+    
+    
+}
+
+module.exports = {
+    showSearchBar,
+    searchFilmsByTitle,
+    showFilms,
+    showDetailedView
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getCrewInfoByID-fetchesstaffinformationfromthemovieAPIbyID.">getCrewInfoByID - fetches staff information from the movie API by ID.</a></li><li><a href="global.html#getMovieDetails-fetchesdatafromthemovieAPIbymovietitle.">getMovieDetails - fetches data from the movie API by movie title.</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Nov 22 2023 20:26:11 GMT+0400 (Azerbaijan Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

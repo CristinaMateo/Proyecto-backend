@@ -1,0 +1,43 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title CoffeeMovie
+        link(rel="stylesheet", href="/style.css") 
+    body 
+
+        include ./adminheader.pug
+        main
+
+            h3 Update a movie in our database!
+                p If you think the information given is not correct, update a movie. Remember to complete all spaces even if they will stay the same.
+
+            form(action="" method="")
+
+                fieldset
+                    label(for="title") Old title:
+                    input(type="text" name="title" class="update" required)
+                    label(for="newtitle") Change title:
+                    input(type="text" name="newtitle" class="update" required)
+                    label(for="release_date") Release date:
+                    input(type="date" name="release_date" class="update" placeholder="YYYY-MM-DD" required)
+                    label(for="director") Director:
+                    input(type="text" name="director" class="update" required)
+                    label(for="genre") Genre:
+                    input(type="text" name="genre" class="update" required)
+                    label(for="poster_path") Poster image, insert url:
+                    input(type="text" name="poster_path" class="update" placeholder="url" required)
+                    label(for="runtime") Runtime:
+                    input(type="text" name="runtime" class="update" required)
+                    label(for="overview") Overview:
+                    input(type="text" name="overview" class="update" required)
+                    label(for="cast") Cast:
+                    input(type="text" name="cast" class="update" required)
+                    label(for="vote_average") Average Rating:
+                    input(type="number" step="0.1" name="vote_average" class="update" placeholder="example: 6.7" required)
+                
+                    button(id="update") Update
+        
+        script(src="/scripts/scriptPut.js")
+           

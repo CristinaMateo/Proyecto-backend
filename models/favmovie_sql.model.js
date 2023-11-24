@@ -1,6 +1,16 @@
 const queries = require('../queries/favmovie_sql.queries')
 const pool = require('../config/db_pgsql')//accede al fichero este que es el que accede al .env donde está la info
 
+/** 
+* @author 
+* @method getFavMovies - gets favourite movies from database 
+* @async
+* @param req - email
+* @throws {error}
+* @return result
+* @exports getFavMovies
+*/
+
 const getFavMovies = async (email) => {
     let client, result;
     try {
@@ -15,6 +25,16 @@ const getFavMovies = async (email) => {
     }
     return result
 }
+
+/** 
+* @author 
+* @method addFavMovies - adds to favourite movie in the database 
+* @async
+* @param req - title,genre,posterimg,email
+* @throws {error}
+* @return result
+* @exports addFavMovies
+*/
 
 const addFavMovie = async (infomovie) => {
     const {title, genre, posterimg, email} = infomovie;
@@ -31,6 +51,16 @@ const addFavMovie = async (infomovie) => {
     }
     return result
 }
+
+/** 
+* @author 
+* @method deleteFromFav - deletes from favourite films
+* @async
+* @param req - title
+* @throws {error}
+* @return result
+* @exports deleteFromFav
+*/
 
 // DELETE
 const deleteFromFav = async (infomovie) => {

@@ -1,16 +1,16 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-        link(rel="stylesheet", href="style.css")
-        
-    body 
-
-        header 
-            img(src="logoaqui", alt=logo)
-            h1  CoffeeMovie
-            input(type="button" id="menu_hamburguesa"); /alinear derecha
-
-
+header
+    div(class="hamburger-menu")
+    input(id="menu__toggle" type="checkbox")
+    label(class="menu__btn" for="menu__toggle")
+        span
+    ul(class="menu__box")
+        li
+            a(class="menu__item" href="/dashboard") HOME
+        li 
+            a(class="menu__item" href="/search") SEARCH
+        li
+            a(class="menu__item" href="/movies") MY MOVIES 
+        li 
+            a(class="menu__item" href="/logout") LOG OUT
+    
+    img(src="/assets/logoWeb.jpg", alt="logo Web", class="headerimg")
