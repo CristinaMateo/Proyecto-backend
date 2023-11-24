@@ -20,9 +20,6 @@
     scroll-behavior: smooth;
   }
   
-
-/* DASHBOARD */
-
   body {
     font-family: 'Arial', sans-serif;
     font-size: 15px;
@@ -51,6 +48,10 @@
     width: 70%;
     margin: auto;
   }
+  .headerimg{
+    width: 70%;
+    margin: auto;
+  }
   
   button {
     background-color: var(--jasmine); 
@@ -72,10 +73,11 @@
   }
   
   form {
-    max-width: 400px;
+    
     margin: 0 auto;
     background-color: var(--ashgray);
     padding: 10px;
+    text-align: center;
   }
   
   fieldset {
@@ -83,6 +85,7 @@
     margin-bottom: 1rem;
     padding: 1rem;
     border-radius: 8px;
+    
   }
 
   article{
@@ -92,6 +95,11 @@
   
   h4, h5 {
     color: var(--green); 
+    text-align: center;
+  }
+
+  h3{
+    text-align: center;
   }
 
   p{
@@ -133,8 +141,6 @@
     background-color: var(--walnut); 
     padding: 1rem;
     text-align: center;
-    position: fixed;
-    bottom: 20px;
   }
 
 
@@ -176,7 +182,7 @@
     width: 100%;
     height: 2px;
     background-color: var(--jasmine);
-    transition-duration: .25s;
+    transition-duration: .25s;  
   }
   .menu__btn > span::before {
     content: '';
@@ -209,7 +215,47 @@
     font-weight: 600;
     text-decoration: none;
     transition-duration: .25s;
+    margin-bottom: 20px;
   }
   .menu__item:hover {
     background-color: #CFD8DC;
+  }
+
+ 
+
+  @media screen and (min-width: 768px) {
+    .headerimg{
+      width: 50%;
+      margin: auto;
+    }
+    main{
+      width: 90%;
+      margin: auto;
+    }
+    .menu__btn > span,
+    .menu__btn > span::before,
+    .menu__btn > span::after{
+      background-color: var(--coffee);
+    }
+  
+  }
+
+  @media screen and (min-width: 1200px) {
+    .headerimg{
+      width: 20%;
+      margin: auto;
+    }
+    header{
+      width: 90%;
+      margin: auto;
+    }
+
+    main{
+      width: 80%;
+      margin: auto;
+    }
+    form{
+      max-width: 60%;
+    }
+
   }
