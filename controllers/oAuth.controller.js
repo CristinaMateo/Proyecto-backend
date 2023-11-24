@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const passport = require('passport');
 const isAdmin = require("./isAdmin");
+const usersModel = require('../models/users_sql.model');
 require('../config/oauth')
 
 
@@ -73,9 +74,10 @@ const failure = (req, res) => {
 * @exports logout
 */
 
-const logout =(req, res) => {
-    req.logout(function (err) {
+const logout = async (req, res) => {
+    req.logout(async function (err) {
        if (err) { return next(err); }
+       await usersModel.logoutUser()
        req.session.destroy();
        res.clearCookie("logged-email");
        res.clearCookie("access-token").redirect('/');

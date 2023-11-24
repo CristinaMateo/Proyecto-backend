@@ -29,11 +29,11 @@ const loginUser = async (email) => {
     return result
 }
 
-const logoutUser = async (email) => {
+const logoutUser = async () => {
     let client, result;
     try {
         client = await pool.connect()
-        const data = await client.query(queries.logoutUser, [email])
+        const data = await client.query(queries.logoutUsers)
         result = data.rows[0]
     } catch (err) {
         console.log(err);

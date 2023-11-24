@@ -14,10 +14,9 @@ const queries = {
     SET logged = true
     WHERE email = $1
     RETURNING *`,
-    logoutUser: `
+    logoutUsers: `
     UPDATE users
     SET logged = false
-    WHERE email = $1
     RETURNING *`
 }
 module.exports = queries;
