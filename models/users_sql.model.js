@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 /** 
-* @author 
+* @author Antonio Mangado - Cristina Repiso
 * @method loginUser 
 * @async
 * @param req - email
@@ -29,8 +29,23 @@ const loginUser = async (email) => {
     return result
 }
 
+const logoutUser = async () => {
+    let client, result;
+    try {
+        client = await pool.connect()
+        const data = await client.query(queries.logoutUsers)
+        result = data.rows[0]
+    } catch (err) {
+        console.log(err);
+        throw err;
+    } finally {
+        client.release();
+    }
+    return result
+}
+
 /** 
-* @author 
+* @author Antonio Mangado - Cristina Repiso
 * @method getUsersByEmail - gets a user from the database. 
 * @async
 * @param req - email
@@ -55,7 +70,7 @@ const getUsersByEmail = async (email) => {
 }
 
 /** 
-* @author 
+* @author Antonio Mangado - Cristina Repiso
 * @method createUser - creates a user in the database 
 * @async
 * @param req - email,username,password,image
@@ -86,7 +101,7 @@ const createUser = async (infouser) => {
 }
 
 /** 
-* @author 
+* @author Cristina Repiso
 * @method deleteUser - delete a user from the database 
 * @async
 * @param req - email
@@ -95,7 +110,7 @@ const createUser = async (infouser) => {
 * @exports deleteUser
 */
 
-// DELETE
+// DELETE 
 const deleteUser = async (infouser) => {
     const {email} = infouser;
     let client, result;
@@ -116,7 +131,8 @@ const users = {
     getUsersByEmail,
     createUser,
     deleteUser,
-    loginUser
+    loginUser,
+    logoutUser
 }
 
 module.exports = users;

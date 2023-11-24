@@ -8,12 +8,7 @@ html(lang="en")
         
     body
 
-        header 
-            img(src="/assets/logoWeb.jpg", alt="logo Web")
-            a(href="/menu")
-                input(type="button" id="menu_hamburguesa" value="Menu")
-
-
+        include ./header.pug
         main  
             form(action="/search/" method="post" id="search-form")      
                 label(for="title") Search for a movie:
@@ -34,8 +29,7 @@ html(lang="en")
                         h3 Runtime: #{movie.runtime} minutes
                         //- input(class="addFav" type="submit") Add to My Movies
         
-        footer 
-            img(src="assets/logoApi.png", alt="logo Api")
+        include ./footer.pug
 
         script(src='/scripts/film-list.js')    
                         

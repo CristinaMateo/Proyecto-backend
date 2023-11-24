@@ -4,14 +4,11 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title CoffeeMovie
-        link(rel="stylesheet", href="./style.css") 
-    body 
+        link(rel="stylesheet", href="/style.css") 
+    body
 
-        header 
-            img(src="/assets/logoWeb.jpg", alt="logo Web")
-            a(href="/menu")
-                input(type="button" id="menu_hamburguesa" value="Menu")
-        
+        include ./adminheader.pug
+           
         main 
 
             section 
@@ -27,13 +24,11 @@ html(lang="en")
                 button(type='button') Add a Movie
 
 
-            a(href="/logout" id="logoutNav")  
-                        button(type='button') LOG OUT
+            
 
             
 
-    footer 
-        img(src="assets/logoApi.png", alt="logo Api")
+        include ./footer.pug
     
 
 

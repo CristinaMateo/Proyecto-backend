@@ -4,15 +4,9 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title CoffeeMovie
-        link(rel="stylesheet", href="./style.css") 
+        link(rel="stylesheet", href="/style.css") 
     body
-        header
-            img(src="/assets/logoWeb.jpg", alt="logo Web")
-                a(href="/menu")
-                    input(type="button" id="menu_hamburguesa" value="Menu")
-
-            
-                     
+        include ./adminheader.pug    
         main#details_container
 
             h3 Hello, admin
@@ -20,7 +14,7 @@ html(lang="en")
             a(href='/admin/createMovieForm') 
                 button(type='button') Add a Movie
              
-            p Remember you may only be able to change the movie's details or delete it if you created it on out database. Add a movie if you didn't.
+            p Remember you may only be able to change the movie's details or delete it if you created it on our database. Add a movie if you didn't.
             
             
             form(action="/admin/search/" method="post" id="search-form")      
@@ -45,6 +39,8 @@ html(lang="en")
                     button(type='button') Update this movie
 
                 button#rating  OPINIONS
+                
+        include ./footer.pug
         
         script(src="/scripts/scriptDelete.js") 
 

@@ -5,13 +5,10 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title CoffeeMovie
-        link(rel="stylesheet", href="./style.css") 
-    body 
-        header 
-                img(src="assets/logoWeb.jpg", alt="logo web")
-                a(href="/menu")
-                    input(type="button" id="menu_hamburguesa" value="Menu")
-                
+        link(rel="stylesheet", href="/style.css") 
+    body
+
+        include ./header.pug
         main
             section(class="routeButtons")
             a(href="/search")
@@ -25,5 +22,4 @@ html(lang="en")
 
         script(src="./scripts/script1.js")
 
-    footer 
-        img(src="assets/logoApi.png", alt="logo Api") 
+    include ./footer.pug
