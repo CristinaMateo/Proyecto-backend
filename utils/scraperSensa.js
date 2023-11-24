@@ -3,7 +3,7 @@ const puppeteer = require("puppeteer");
 
 
 /** 
-* @Author 
+* @author Raúl Awad
 * @method extractOpinionData - gets opionions from other websites
 * @async
 * @param req - url,browser
@@ -32,7 +32,7 @@ const extractOpinionData = async (url, browser) => {
 };
 
 /** 
-* @Author 
+* @author Raúl Awad
 * @method scrap - does scraping
 * @async 
 * @param req - searchQuery

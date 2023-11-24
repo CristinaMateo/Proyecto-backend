@@ -39,5 +39,9 @@ A continuación, algunas capturas de pantalla de CoffeeMovie:
 - Optimizar la carga de imágenes para mejorar el rendimiento.
 - Agregar más filtros de búsqueda y categorías.
 - Investigar y corregir posibles problemas de seguridad.
+- Implementar funcionalidad de añadir a favoritos.
+- Testeo.
+- Despliegue.
+
   
 ¡Gracias por explorar CoffeeMovie! Siéntete libre de contribuir y mejorar nuestra plataforma de películas.

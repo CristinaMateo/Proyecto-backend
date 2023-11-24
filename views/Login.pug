@@ -3,15 +3,13 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-        link(rel="stylesheet", href="./style.css") 
+        title CoffeeMovie
+        link(rel="stylesheet", href="/style.css") 
 
     body
         header
-            img(src="/assets/logoApi.png", alt="logo Api")
+            img(src="/assets/logoWeb.jpg", alt="logo Web",class="headerimg")
         main
-
-        
             h3 If you are not a member of out comunity you can also sign up or authenticate with
 
             a(href="/auth/google") 
@@ -23,12 +21,12 @@ html(lang="en")
                     label(for="email") Email 
                     input(type="email", placeholder="Introduce email", name="email", id="log_mail")
                     label(for="password") Password 
-                    input(type="text", placeholder="Introduce password", name="password", id="log_pass")
+                    input(type="password", placeholder="Introduce password", name="password", id="log_pass")
                     input(type="submit" value="Log in" id="log")
 
 
 
-            form(id ="form1" action="#" method="POST")
+            form(id ="form1" action="/addUser" method="POST")
                 fieldset
                     h3 Create an account 
                     label(for="email") Email:
@@ -43,6 +41,5 @@ html(lang="en")
                     input(type="file" id="signup-picture" accept="image/*" name="image")
                     input(type="submit" value="Create" id="create")
 
-        footer 
-            img(src="/assets/logoApi.png", alt="logo Api")
+        
             

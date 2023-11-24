@@ -3,15 +3,11 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-        //- link(rel="stylesheet", href="style.css")
+        title CoffeeMovie
+        link(rel="stylesheet", href="/style.css")
     body 
 
-        header 
-            h1  CoffeeMovie
-            a(href="/menu")
-                input(type="button" id="menu_hamburguesa" value="Menu")
-
+        include ./header.pug
         main#details_container 
             form(action="/search/" method="post" id="search-form")      
                 label(for="title") Search for a movie:
@@ -29,8 +25,8 @@ html(lang="en")
                 p Ratings: #{movieDetails.vote_average}
 
                 button#rating  OPINIONS
-
+        include ./footer.pug
+        
         script(src="/js/script.js")
          
-        footer 
-            img(src="/assets/logoApi.png", alt="logo Api")
+        

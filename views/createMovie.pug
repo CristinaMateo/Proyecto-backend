@@ -3,12 +3,11 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-    body 
+        title CoffeeMovie
+        link(rel="stylesheet", href="/style.css") 
+    body
 
-        header
-            h1  CoffeeMovie
-            input(type="button" id="menu_hamburguesa" value="Menu")
+        include ./adminheader.pug
         main
 
             h3 Add a new movie to our database!
@@ -39,8 +38,7 @@ html(lang="en")
                 
                     input(type="submit" value="Create" id="create")
            
-     footer 
-        img(src="assets/logoApi.png", alt="logo Api")
+        
 
 
 
