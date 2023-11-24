@@ -74,7 +74,7 @@
   
   form {
     
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: var(--ashgray);
     padding: 10px;
     text-align: center;
@@ -133,7 +133,6 @@
   
   a {
     text-decoration: none;
-    background-color: var(--jasmine);
     color: black;
   }
   
@@ -236,6 +235,10 @@
     .menu__btn > span::before,
     .menu__btn > span::after{
       background-color: var(--coffee);
+    }
+    footer{
+      width: 30%;
+      margin: auto;
     }
   
   }
