@@ -15,7 +15,7 @@ const searchFilmsByTitle = (req, res) => {
 }
 
 /** 
-* @Author Antonio Mangado
+* @author Antonio Mangado
 * @function showFilms - requests information from the mongo db or the API. Then manipulates the data and sends it to a rendered pug file.
 * @async
 * @param {string} req - the body of the POST form, contains a title to be used in later functions
@@ -84,7 +84,7 @@ const showFilms = async (req, res) => {
 }
 
 /** 
-* @Author Antonio Mangado
+* @author Antonio Mangado
 * @function showDetailedView - a function that executes once the user accesses the route /search/:id/details. It shows a detailed view of the film clicked.
 * @async
 * @param {string/number} req - to use req.params.id to obtain the id of the film clicked on.
