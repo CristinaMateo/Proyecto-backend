@@ -1,5 +1,5 @@
 /** 
-* @author 
+* @author Cristina Mateo
 * @method isAdmin - check if role:admin
 * @param req - email
 * @return {boolean}

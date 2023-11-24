@@ -10,6 +10,15 @@ const authentication = passport.authenticate("google", { scope: ['email', 'profi
 //Fallo
 const redirectToFailure = passport.authenticate('google', { failureRedirect: '/auth/failure' })
 
+
+
+/** 
+* @author Cristina Mateo
+* @method Success 
+* @param res - the response renders a different pug file depending if the logged email has a user or admin role. Email is checked by using cookies.
+* @exports Success
+*/
+
 //Éxito
 const Success = (req, res) => {
 //En el cuerpo de esta función podemos almacenar usuarios en nuestra bbdd con el objeto que nos proporciona req.user (Para ello es necesario hacer la función asíncrona)
@@ -45,12 +54,24 @@ const Success = (req, res) => {
 }
 
 
-
+/** 
+* @author Cristina Mateo
+* @method failure 
+* @param res - the response redirects to login site if something goes wrong.
+* @exports failure
+*/
 const failure = (req, res) => {
     res.send('Something went wrong... Try again')
     res.redirect('/login')
 }
 
+
+/** 
+* @author Cristina Mateo
+* @method logout 
+* @param res - the response redirects to login site if user logges out.
+* @exports logout
+*/
 
 const logout =(req, res) => {
     req.logout(function (err) {

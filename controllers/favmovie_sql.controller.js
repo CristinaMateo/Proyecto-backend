@@ -1,7 +1,7 @@
 const favMovieModel = require('../models/favmovie_sql.model');
 
 /** 
-* @author 
+* @author Cristina Mateo
 * @method getFavMovies - requests user email. Then gets the favourite movies of this user. 
 * @async
 * @throws {error}
@@ -21,7 +21,7 @@ const getFavMovies = async (req, res) => {
   };
 
 /** 
-* @author 
+* @author Cristina Mateo
 * @method addFavMovies - requests information from the body. Then adds the favourite movie into the response. 
 * @async
 * @param req - email
@@ -39,7 +39,7 @@ const addFavMovies = async (req, res) => {
 }
 
 /** 
-* @author 
+* @author Cristina Mateo
 * @method deleteFavMovies - requests information from the body.
 * @async
 * @param res - the response, in this case, returns a status(201) with the item deleted.

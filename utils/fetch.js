@@ -1,5 +1,5 @@
 /** 
-* @Author Antonio Mangado
+* @author Antonio Mangado
 * @function getMovieDetails - fetches data from the movie API by movie title.
 * @async
 * @param {string} title - the title of the movie to find
@@ -13,7 +13,7 @@ const getMovieDetails = async (title) => {
 
 
 /** 
-* @Author Antonio Mangado
+* @author Antonio Mangado
 * @function getMovieByID - fetches data from the movie API by ID. Returns extra information from getMovieDetails
 * @async
 * @param {number} id - the id of the movie to find
@@ -26,7 +26,7 @@ const getMovieByID = async (id) => {
 };
 
 /** 
-* @Author Antonio Mangado
+* @author Antonio Mangado
 * @function getCrewInfoByID - fetches staff information from the movie API by ID. 
 * @async
 * @param {number} id - the id of the movie to find the staff from.
