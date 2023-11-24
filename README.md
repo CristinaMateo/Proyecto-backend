@@ -1,8 +1,6 @@
-
-
-[![Video de Presentación](video.png)](enlace_al_video)
-
 # CoffeeMovie: Proyecto de Backend
+
+![Cabecera](./public/assets/logoWeb.jpg)
 
 Este es el repositorio del proyecto CoffeeMovie, una página web dedicada a la exploración y disfrute de películas. Desarrollado por Antonio, Adrian, Cristina, y Raul, este proyecto utiliza Pug para el front-end, CSS para el diseño, y JavaScript para la lógica de la página.
 
@@ -21,15 +19,22 @@ Este es el repositorio del proyecto CoffeeMovie, una página web dedicada a la e
 A continuación, algunas capturas de pantalla de CoffeeMovie:
 
 1. **Página de Inicio**
+   
    ![Página de Inicio](./public/assets/paginicio.png)
 
+
 2. **Exploración por Título**
+   
    ![Exploración por Título](./public/assets/search.png)
 
+
 3. **Menú Hamburguesa**
+   
    ![Menú Hamburguesa](./public/assets/menu.png)
 
+
 4. **Detalles de la Película**
+   
    ![Detalles de la Película](./public/assets/film.png)
 
 
