@@ -26,7 +26,6 @@ const showFilms = async (req, res) => {
     try {
         let movieDetails =  await Movie.find({title}, "-__v") // => devuelve [{pelicula}, {pelicula}]
         if (movieDetails.length != 0) {
-            console.log(movieDetails)
             res.render("film-list-db", { movieDetails })
         } else {
             movieDetails = await fetch.getMovieDetails(title) // => devuelve [] con resultados
@@ -97,7 +96,6 @@ const showDetailedView = async (req, res) => {
     if (id.length > 20) {
         let movieDetails =  await Movie.find({_id: id}, "-__v")
         movieDetails = movieDetails[0];
-        console.log(movieDetails)
         res.render("filmDetail", { movieDetails })
     } else {
         // Luego buscamos en API si no se obtienen resultados
@@ -110,8 +108,6 @@ const showDetailedView = async (req, res) => {
         movieDetails.poster_path = `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
         res.render("filmDetail", { movieDetails })
     }
-    
-    
 }
 
 module.exports = {

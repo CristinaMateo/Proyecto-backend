@@ -25,16 +25,14 @@ const getUser = async (req, res) => {
             res.status(400).json({ msg: 'Incorrect user or password'}); 
         }else{
             const match = await bcrypt.compare(password, hashPassword);
-            // console.log(match)
             if(match){
                 const data = await usersModel.loginUser(email)
-                // console.log(data)
                 const userForToken = {
                     email: data.email,
                     username: data.username,
                 };
-                // console.log(userForToken)
                 const token = jwt.sign(userForToken, process.env.CLIENT_SECRET, {expiresIn: '60m'});
+
                 //Almacenamos el token en las cookies
                 res.cookie("access-token", token, {
                     httpOnly: true,
@@ -70,10 +68,8 @@ const getUser = async (req, res) => {
 // Create User
 const createUser = async (req, res) => {
     const newUser = req.body;
-    // console.log(newUser)
     if (newUser.password == newUser.password2) {
         const response = await usersModel.createUser(newUser); 
-
         const token = jwt.sign({email: newUser.email}, process.env.CLIENT_SECRET, {
             expiresIn: '60m'
         })
