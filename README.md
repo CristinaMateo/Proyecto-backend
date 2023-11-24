@@ -21,19 +21,16 @@ Este es el repositorio del proyecto CoffeeMovie, una página web dedicada a la e
 A continuación, algunas capturas de pantalla de CoffeeMovie:
 
 1. **Página de Inicio**
-   ![Página de Inicio](capturas/inicio.png)
+   ![Página de Inicio](./public/assets/paginicio.png)
 
-2. **Exploración por Género**
-   ![Exploración por Género](capturas/exploracion_genero.png)
+2. **Exploración por Título**
+   ![Exploración por Título](./public/assets/search.png)
 
-3. **Perfil de Usuario**
-   ![Perfil de Usuario](capturas/menu_ham.png)
+3. **Menú Hamburguesa**
+   ![Menú Hamburguesa](./public/assets/menu.png)
 
-4. **Autenticación con Google**
-   ![Autenticación con Google](capturas/google_auth.png)
-
-5. **Detalles de la Película**
-   ![Detalles de la Película](capturas/detalles_pelicula.png)
+4. **Detalles de la Película**
+   ![Detalles de la Película](./public/assets/film.png)
 
 
 ## Tareas Pendientes
