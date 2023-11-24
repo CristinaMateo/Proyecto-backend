@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({origin:'https://cdn.pixabay.com'}))
 // Use Helmet!
-app.use(helmet());
+//app.use(helmet());
 
 
 //Inicializamos passport y la session de passport
