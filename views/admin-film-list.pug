@@ -4,13 +4,11 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title CoffeeMovie
-        link(rel="stylesheet", href="./style.css") 
+        link(rel="stylesheet", href="/style.css") 
         
     body
 
-        header 
-            img(src="/assets/logoWeb.jpg", alt="logo Web")
-            input(type="button" id="menu_hamburguesa" value="Menu")
+        include ./adminheader.pug
 
         main 
 
@@ -36,5 +34,7 @@ html(lang="en")
                         h3 Director: #{movie.director}
                         h3 Genre: #{movie.genre}
                         h3 Runtime: #{movie.runtime} minutes
+                        
+        include ./footer.pug
                         
         script(src='/scripts/admin-film-list.js')
