@@ -2,7 +2,7 @@
 // Para rutas no existentes
 
 /** 
-* @author 
+* @author Cristina Mateo
 * @method manage404 
 * @param res - the response, in this case, returns a status(404).
 * @exports manage404

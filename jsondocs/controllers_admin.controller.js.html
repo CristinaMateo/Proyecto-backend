@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: controllers/search.controllers.js</title>
+    <title>JSDoc: Source: controllers/admin.controller.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: controllers/search.controllers.js</h1>
+    <h1 class="page-title">Source: controllers/admin.controller.js</h1>
 
     
 
@@ -26,35 +26,99 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const fetch = require("../utils/fetch.js")
-const Movie = require("../models/admin.model.js")
+            <pre class="prettyprint source linenums"><code>
+const Movie = require('../models/admin.model');
+const fetch = require("../utils/fetch.js");
 
+/** 
+* @author Cristina Mateo
+* @method getForm 
+* @param res - the response, in this case, renders a pug file.
+* @exports getForm
+*/
 
-// Controlador para mostrar la view "Search-Bar"
-const showSearchBar = (req, res) => {
-    res.render("search-bar")
+//mostrar form para crear peli
+const getForm = (req, res) => {
+    res.render('createMovie.pug');
 }
 
+/** 
+* @author Cristina Mateo
+* @method getUpdateForm 
+* @param res - the response, in this case, renders a pug file.
+* @exports getUpdateForm
+*/
+//mostrar form para update peli
+const getUpdateForm = (req, res) => {
+    res.render("updateForm.pug")
+}
+
+
+/** 
+* @author Cristina Mateo
+* @method createMovie - creates the movie and sends it to a rendered pug file. 
+* @async
+* @throws {error}
+* @param req - title,release_date,director,genre,poster_path,runtime,overview,cast,vote_average
+* @param res - the response, in this case, renders a pug file.
+* @exports createMovie
+*/
+
+//Crear peli
+async function createMovie(req, res){
+try{
+    const{title, release_date, director, genre, poster_path, runtime, overview, cast, vote_average} = req.body
+  
+   await Movie.create({ 
+    title,
+    release_date,
+    director,
+    genre,
+    poster_path,
+    runtime,
+    overview,
+    cast,
+    vote_average });
+
+    res.render('peticionOK.pug')
+
+   }
+   catch(error){
+    res.render('peticionNO.pug')
+   }
+};
+
+/** 
+* @author Cristina Mateo
+* @method getSearchBar
+* @param res - the response, in this case, renders a pug file.
+* @exports getSearchBar
+*/
+
+//get search bar
+const getSearchBar =(req, res) => {
+  res.render("adminSearch")
+}
 
 // Controlador para el formulario tipo POST
 const searchFilmsByTitle = (req, res) => {
     const title = req.body.title;
-    res.redirect(`/search/${title}`); //Redirigimos a search/:title    
+    res.redirect(`/admin/search/${title}`); //Redirigimos a search/:title    
 }
 
 /** 
 * @author Antonio Mangado
-* @function showFilms - requests information from the mongo db or the API. Then manipulates the data and sends it to a rendered pug file.
-* @async
-* @param {string} req - the body of the POST form, contains a title to be used in later functions
-* @param res - the response, in this case, renders a pug file.
+* @method showFilms
+* @param res - the response, in this case, renders a pug file with a list of the searched movie and it's versions in the database.
+* @exports showFilms
 */
-const showFilms = async (req, res) => {
+
+  const showFilms = async (req, res) => {
     const title = req.params.title;
     try {
         let movieDetails =  await Movie.find({title}, "-__v") // => devuelve [{pelicula}, {pelicula}]
         if (movieDetails.length != 0) {
-            res.render("film-list-db", { movieDetails })
+            res.render("admin-list-db", { movieDetails })
         } else {
             movieDetails = await fetch.getMovieDetails(title) // => devuelve [] con resultados
             const ids = movieDetails.map(movie => movie.id)
@@ -102,7 +166,7 @@ const showFilms = async (req, res) => {
                 movieDetails[i].runtime = genreAndRuntime.runTimes[i]
                 movieDetails[i].genre = genreAndRuntime.genre[i]
             }
-            res.render("film-list", { movieDetails })
+            res.render("admin-film-list", { movieDetails })
                 }
     }
     catch (error) {
@@ -112,19 +176,22 @@ const showFilms = async (req, res) => {
 }
 
 /** 
-* @author Antonio Mangado
-* @function showDetailedView - a function that executes once the user accesses the route /search/:id/details. It shows a detailed view of the film clicked.
+* @author Antonio Mangado &amp; Cristina Mateo
+* @method showDetailedView - requests by id in the database, if no results, in the API. 
 * @async
-* @param {string/number} req - to use req.params.id to obtain the id of the film clicked on.
+* @param req - id
 * @param res - the response, in this case, renders a pug file.
+* @exports showDetailedView
 */
+
 const showDetailedView = async (req, res) => {
     const id = req.params.id;
     // Primero hacemos busqueda en base de datos por ID
     if (id.length > 20) {
         let movieDetails =  await Movie.find({_id: id}, "-__v")
         movieDetails = movieDetails[0];
-        res.render("filmDetail", { movieDetails })
+        
+        res.render("adminDetails", { movieDetails })
     } else {
         // Luego buscamos en API si no se obtienen resultados
         movieDetails = await fetch.getMovieByID(id) // => devuelve un objeto
@@ -134,15 +201,63 @@ const showDetailedView = async (req, res) => {
         const director = directorObject.name || "Unknown";
         movieDetails.director = director
         movieDetails.poster_path = `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
-        res.render("filmDetail", { movieDetails })
+        res.render("adminDetails", { movieDetails })
+    }   
+}
+
+/** 
+* @author Cristina Mateo
+* @method updateMovie - updates a movie in database. 
+* @async
+* @param req -title
+* @param res - the response renders a pug file to redirect to the search menu.
+* @exports updateMovie
+*/
+
+const updateMovie = async (req, res) =>{
+    try{
+        let body = req.body;
+        let {title} = req.params
+        await Movie.updateOne({title}, body)
+    res.render("peticionOK.pug")
+}
+    catch(error){
+        res.render("peticionNO.pug")
+    }
+};
+
+/** 
+* @author Cristina Mateo
+* @method deleteMovie - updates a movie in database. 
+* @async
+* @param req -title
+* @param res - the response renders a pug file to redirect to the search menu.
+* @exports deleteMovie
+*/
+
+const deleteMovie = async (req, res) => {
+    try{
+        let title = req.body.title;
+        console.log("title:", title)
+        await Movie.deleteOne({title});
+    res.render("peticionOK.pug")
+    }
+    catch(error){
+        res.render("peticionNO.pug")
     }
 }
 
+
 module.exports = {
-    showSearchBar,
+    createMovie,
+    getForm,
+    getSearchBar,
     searchFilmsByTitle,
     showFilms,
-    showDetailedView
+    showDetailedView,
+    updateMovie,
+    getUpdateForm,
+    deleteMovie
 }</code></pre>
         </article>
     </section>

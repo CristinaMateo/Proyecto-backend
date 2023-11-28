@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/fetch.js</title>
+    <title>JSDoc: Source: controllers/favmovie_sql.controller.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/fetch.js</h1>
+    <h1 class="page-title">Source: controllers/favmovie_sql.controller.js</h1>
 
     
 
@@ -26,52 +26,68 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** 
-* @author Antonio Mangado
-* @function getMovieDetails - fetches data from the movie API by movie title.
-* @async
-* @param {string} title - the title of the movie to find
-* @returns {object} - One or several objects with the details of movies found
-*/
-const getMovieDetails = async (title) => {
-    let response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${title}&amp;api_key=1b1d8ac19d2157bc278dad11d08b1894`); //{} o [{},{},{},{}]
-    let movieDetails = await response.json(); //{} o [{},{},{},{}] 
-    return movieDetails.results
-};
-
+            <pre class="prettyprint source linenums"><code>const favMovieModel = require('../models/favmovie_sql.model');
 
 /** 
-* @author Antonio Mangado
-* @function getMovieByID - fetches data from the movie API by ID. Returns extra information from getMovieDetails
+* @author Cristina Mateo
+* @method getFavMovies - requests user email. Then gets the favourite movies of this user. 
 * @async
-* @param {number} id - the id of the movie to find
-* @returns {object} - only one object
+* @throws {error}
+* @param req - email
+* @param res - the response, in this case, renders a pug file with the data from the database.
+* @exports getFavMovies
 */
-const getMovieByID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=1b1d8ac19d2157bc278dad11d08b1894`);
-    let singleMovieDtl = await response.json()
-    return singleMovieDtl
-};
+
+const getFavMovies = async (req, res) => {
+    try {
+      const movies = await favMovieModel.getFavMovies(req.user.emails[0].value);
+      res.render('favmovies', { movies });
+    } catch (error) {
+      console.error('Error al obtener las películas favoritas:', error);
+      res.status(500).send('Error interno del servidor');
+    }
+  };
 
 /** 
-* @author Antonio Mangado
-* @function getCrewInfoByID - fetches staff information from the movie API by ID. 
+* @author Cristina Mateo
+* @method addFavMovies - requests information from the body. Then adds the favourite movie into the response. 
 * @async
-* @param {number} id - the id of the movie to find the staff from.
-* @returns {array} - an array with two objects: crew and cast
+* @param req - email
+* @param res - the response, in this case, return status(201) with the item created.
+* @exports addFavMovies
 */
-const getCrewInfobyID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?&amp;api_key=03ce75d14fd1010ba46c32378b9f079a`)
-    let crewDetails = await response.json();
-    return crewDetails
-};
 
+const addFavMovies = async (req, res) => {
+    const newfav = req.body; 
+    const response = await favMovieModel.addFavMovie({...newfav, email: req.user.emails[0].value});
+    res.status(201).json({
+        "items_created": response,
+        data: newfav
+    });
+}
 
+/** 
+* @author Cristina Mateo
+* @method deleteFavMovies - requests information from the body.
+* @async
+* @param res - the response, in this case, returns a status(201) with the item deleted.
+* @exports deleteFavMovies
+*/
+
+//DELETE
+const deleteFavMovie = async (req, res) => {
+    const deleteFav = req.body; // {email}
+    const response = await favMovieModel.deleteFromFav(deleteFav);
+    res.status(201).json({
+        "items_deleted": response,
+        data: deleteFav
+    });
+}
 
 module.exports = {
-    getMovieDetails,
-    getMovieByID,
-    getCrewInfobyID,
+    getFavMovies,
+    addFavMovies,
+    deleteFavMovie
 }</code></pre>
         </article>
     </section>

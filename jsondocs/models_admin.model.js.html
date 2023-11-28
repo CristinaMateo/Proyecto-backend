@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/fetch.js</title>
+    <title>JSDoc: Source: models/admin.model.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/fetch.js</h1>
+    <h1 class="page-title">Source: models/admin.model.js</h1>
 
     
 
@@ -26,53 +26,60 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** 
-* @author Antonio Mangado
-* @function getMovieDetails - fetches data from the movie API by movie title.
-* @async
-* @param {string} title - the title of the movie to find
-* @returns {object} - One or several objects with the details of movies found
-*/
-const getMovieDetails = async (title) => {
-    let response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${title}&amp;api_key=1b1d8ac19d2157bc278dad11d08b1894`); //{} o [{},{},{},{}]
-    let movieDetails = await response.json(); //{} o [{},{},{},{}] 
-    return movieDetails.results
-};
+            <pre class="prettyprint source linenums"><code>const connection = require('../config/db_mongo');
 
+const objectSchema = {
+    title: String,
+    release_date: String,
+    director: String,
+    genre: String,
+    poster_path: String,
+    runtime: String,
+    overview: String,
+    cast: String,
+    vote_average: Number
+}
 
-/** 
-* @author Antonio Mangado
-* @function getMovieByID - fetches data from the movie API by ID. Returns extra information from getMovieDetails
-* @async
-* @param {number} id - the id of the movie to find
-* @returns {object} - only one object
-*/
-const getMovieByID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=1b1d8ac19d2157bc278dad11d08b1894`);
-    let singleMovieDtl = await response.json()
-    return singleMovieDtl
-};
+// Crear el esquema
+const movieSchema = connection.Schema(objectSchema);
+// Crear el modelo
+const Movie = connection.model('Movie', movieSchema);
 
 /** 
-* @author Antonio Mangado
-* @function getCrewInfoByID - fetches staff information from the movie API by ID. 
+* @author Cristina Mateo
+* @method createMovie - creates a movie that is not in the database or API 
 * @async
-* @param {number} id - the id of the movie to find the staff from.
-* @returns {array} - an array with two objects: crew and cast
+* @param req - title,release_date,director,genre,poster_path,runtime,overview,cast,vote_average
+* @exports createMovie
 */
-const getCrewInfobyID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?&amp;api_key=03ce75d14fd1010ba46c32378b9f079a`)
-    let crewDetails = await response.json();
-    return crewDetails
-};
 
+async function createMovie(title, release_date, director, genre, poster_path, runtime, overview, cast, vote_average) {
+    const movie = new Movie({
+        title, 
+        release_date, 
+        director, 
+        genre, 
+        poster_path, 
+        runtime, 
+        overview, 
+        cast, 
+        vote_average
+    })
+const result = await movie.save();
+console.log(result);
+}
 
 
 module.exports = {
-    getMovieDetails,
-    getMovieByID,
-    getCrewInfobyID,
-}</code></pre>
+    createMovie
+}
+
+module.exports = Movie
+
+// Creacion de peli para probar conexion a ATLAS
+// createMovie("I am Robot", 2005, "Wes Anderson", "Drama", "https://m.media-amazon.com/images/M/MV5BNmE1OWI2ZGItMDUyOS00MmU5LWE0MzUtYTQ0YzA1YTE5MGYxXkEyXkFqcGdeQXVyMDM5ODIyNw@@._V1_FMjpg_UX1000_.jpg", "1h 30mins", "Muchos roboces, pocos arroces", ["Will Smith", "Mas gente"], 9)
+
+</code></pre>
         </article>
     </section>
 

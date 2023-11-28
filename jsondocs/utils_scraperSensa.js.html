@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/fetch.js</title>
+    <title>JSDoc: Source: utils/scraperSensa.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/fetch.js</h1>
+    <h1 class="page-title">Source: utils/scraperSensa.js</h1>
 
     
 
@@ -26,53 +26,83 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** 
-* @author Antonio Mangado
-* @function getMovieDetails - fetches data from the movie API by movie title.
-* @async
-* @param {string} title - the title of the movie to find
-* @returns {object} - One or several objects with the details of movies found
-*/
-const getMovieDetails = async (title) => {
-    let response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${title}&amp;api_key=1b1d8ac19d2157bc278dad11d08b1894`); //{} o [{},{},{},{}]
-    let movieDetails = await response.json(); //{} o [{},{},{},{}] 
-    return movieDetails.results
-};
+            <pre class="prettyprint source linenums"><code>// SCRAPER PARA SENSACINE:
+const puppeteer = require("puppeteer");
 
 
 /** 
-* @author Antonio Mangado
-* @function getMovieByID - fetches data from the movie API by ID. Returns extra information from getMovieDetails
+* @author Raúl Awad
+* @method extractOpinionData - gets opionions from other websites
 * @async
-* @param {number} id - the id of the movie to find
-* @returns {object} - only one object
+* @param req - url,browser
+* @throws {error}
+* @exports extractOpinionData
 */
-const getMovieByID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=1b1d8ac19d2157bc278dad11d08b1894`);
-    let singleMovieDtl = await response.json()
-    return singleMovieDtl
+// Función para extraer la información de cada comentario
+const extractOpinionData = async (url, browser) => {
+  try {
+    const opinionData = {};
+
+    const page = await browser.newPage();
+    await page.goto(url);
+
+    // Modifica los selectores CSS según la estructura de la página web
+    opinionData["opinion"] = await page.$eval(
+      ".review-card-content",
+      (review) => review.innerText
+    );
+
+    //console.log(opinionData, "*************************");
+    return opinionData;
+  } catch (err) {
+    return { error: err.message };
+  }
 };
 
 /** 
-* @author Antonio Mangado
-* @function getCrewInfoByID - fetches staff information from the movie API by ID. 
-* @async
-* @param {number} id - the id of the movie to find the staff from.
-* @returns {array} - an array with two objects: crew and cast
+* @author Raúl Awad
+* @method scrap - does scraping
+* @async 
+* @param req - searchQuery
+* @throws {error}
+* @exports scrap
 */
-const getCrewInfobyID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?&amp;api_key=03ce75d14fd1010ba46c32378b9f079a`)
-    let crewDetails = await response.json();
-    return crewDetails
+// Función principal para realizar el scraping
+const scrap = async (searchQuery) => {
+  try {
+    const scrapedData = [];
+
+    const browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
+    await page.goto(`https://www.sensacine.com/buscar/?q=${searchQuery}`);
+
+    await page.click(".meta-title-link");
+    const opinionLinks = await page.$$eval(".rating-title", (links) =>
+      links.map((link) => link.href)
+    );
+    //console.log(opinionLinks);
+    //console.log(`${opinionLinks.length} links encontrados`);
+
+
+    for (const opinionLink of opinionLinks) {
+      const opinion = await extractOpinionData(opinionLink, browser);
+      scrapedData.push(opinion);
+    }
+
+
+    //console.log(scrapedData, "Datos obtenidos:", scrapedData.length);
+
+    await browser.close();
+
+    return scrapedData;
+  } catch (err) {
+    console.log("Error:", err.message);
+  }
 };
 
-
-
-module.exports = {
-    getMovieDetails,
-    getMovieByID,
-    getCrewInfobyID,
-}</code></pre>
+// Ejecuta la función de scraping con la consulta de búsqueda
+scrap("titanic").then((data) => console.log(data));
+</code></pre>
         </article>
     </section>
 

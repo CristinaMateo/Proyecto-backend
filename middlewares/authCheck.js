@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken")
 const util = require("util")
 
 /** 
-* @author 
+* @author Antonio Mangado
 * @method protectView - requests headers authorization(token).
 * @async
 * @exports protectView

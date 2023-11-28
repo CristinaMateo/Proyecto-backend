@@ -18,7 +18,7 @@ const movieSchema = connection.Schema(objectSchema);
 const Movie = connection.model('Movie', movieSchema);
 
 /** 
-* @author 
+* @author Cristina Mateo
 * @method createMovie - creates a movie that is not in the database or API 
 * @async
 * @param req - title,release_date,director,genre,poster_path,runtime,overview,cast,vote_average

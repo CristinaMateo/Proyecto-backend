@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/fetch.js</title>
+    <title>JSDoc: Source: controllers/oAuth.controller.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/fetch.js</h1>
+    <h1 class="page-title">Source: controllers/oAuth.controller.js</h1>
 
     
 
@@ -26,52 +26,99 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** 
-* @author Antonio Mangado
-* @function getMovieDetails - fetches data from the movie API by movie title.
-* @async
-* @param {string} title - the title of the movie to find
-* @returns {object} - One or several objects with the details of movies found
+            <pre class="prettyprint source linenums"><code>const jwt = require("jsonwebtoken");
+const passport = require('passport');
+const isAdmin = require("./isAdmin");
+const usersModel = require('../models/users_sql.model');
+require('../config/oauth')
+
+
+
+const authentication = passport.authenticate("google", { scope: ['email', 'profile'], prompt: "select_account" })
+
+//Fallo
+const redirectToFailure = passport.authenticate('google', { failureRedirect: '/auth/failure' })
+
+
+
+/** 
+* @author Cristina Mateo
+* @method Success 
+* @param res - the response renders a different pug file depending if the logged email has a user or admin role. Email is checked by using cookies.
+* @exports Success
 */
-const getMovieDetails = async (title) => {
-    let response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${title}&amp;api_key=1b1d8ac19d2157bc278dad11d08b1894`); //{} o [{},{},{},{}]
-    let movieDetails = await response.json(); //{} o [{},{},{},{}] 
-    return movieDetails.results
-};
+
+//Éxito
+const Success = (req, res) => {
+//En el cuerpo de esta función podemos almacenar usuarios en nuestra bbdd con el objeto que nos proporciona req.user (Para ello es necesario hacer la función asíncrona)
+ //Estos son los pasos para crear un token si la autenticación es exitosa
+    const payload = {
+    //save here data
+    check: true
+    };
+    const token = jwt.sign(payload, `secret_key`, {
+        expiresIn: "60m"
+    });
+
+    //Almacenamos el token en las cookies
+    res.cookie("access-token", token, {
+        httpOnly: true,
+        sameSite: "strict",
+    })
+    res.cookie("logged-email", req.user.emails[0].value,{
+        httpOnly: true,
+        sameSite: "strict",
+    })
+    res.cookie("logged-user", req.user.displayName,{
+        httpOnly: true,
+        sameSite: "strict",
+    })
+    if(isAdmin(req.user.emails[0].value)){
+        res.redirect("/admin/search")
+    } else{
+        res.redirect("/dashboard");
+    }
+    
+
+}
 
 
 /** 
-* @author Antonio Mangado
-* @function getMovieByID - fetches data from the movie API by ID. Returns extra information from getMovieDetails
-* @async
-* @param {number} id - the id of the movie to find
-* @returns {object} - only one object
+* @author Cristina Mateo
+* @method failure 
+* @param res - the response redirects to login site if something goes wrong.
+* @exports failure
 */
-const getMovieByID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=1b1d8ac19d2157bc278dad11d08b1894`);
-    let singleMovieDtl = await response.json()
-    return singleMovieDtl
-};
+const failure = (req, res) => {
+    res.send('Something went wrong... Try again')
+    res.redirect('/login')
+}
+
 
 /** 
-* @author Antonio Mangado
-* @function getCrewInfoByID - fetches staff information from the movie API by ID. 
-* @async
-* @param {number} id - the id of the movie to find the staff from.
-* @returns {array} - an array with two objects: crew and cast
+* @author Cristina Mateo
+* @method logout 
+* @param res - the response redirects to login site if user logges out.
+* @exports logout
 */
-const getCrewInfobyID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?&amp;api_key=03ce75d14fd1010ba46c32378b9f079a`)
-    let crewDetails = await response.json();
-    return crewDetails
-};
 
-
+const logout = async (req, res) => {
+    req.logout(async function (err) {
+       if (err) { return next(err); }
+       await usersModel.logoutUser()
+       req.session.destroy();
+       res.clearCookie("logged-email");
+       res.clearCookie("access-token").redirect('/');
+   });
+   
+}
 
 module.exports = {
-    getMovieDetails,
-    getMovieByID,
-    getCrewInfobyID,
+    authentication,
+    redirectToFailure,
+    Success,
+    failure,
+    logout
 }</code></pre>
         </article>
     </section>

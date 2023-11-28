@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/fetch.js</title>
+    <title>JSDoc: Source: middlewares/error404.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/fetch.js</h1>
+    <h1 class="page-title">Source: middlewares/error404.js</h1>
 
     
 
@@ -26,53 +26,25 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** 
-* @author Antonio Mangado
-* @function getMovieDetails - fetches data from the movie API by movie title.
-* @async
-* @param {string} title - the title of the movie to find
-* @returns {object} - One or several objects with the details of movies found
-*/
-const getMovieDetails = async (title) => {
-    let response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${title}&amp;api_key=1b1d8ac19d2157bc278dad11d08b1894`); //{} o [{},{},{},{}]
-    let movieDetails = await response.json(); //{} o [{},{},{},{}] 
-    return movieDetails.results
-};
-
+            <pre class="prettyprint source linenums"><code>// Última ruta por defecto. En caso de no encotrarse ninguna anterior, devolvemos un 404
+// Para rutas no existentes
 
 /** 
-* @author Antonio Mangado
-* @function getMovieByID - fetches data from the movie API by ID. Returns extra information from getMovieDetails
-* @async
-* @param {number} id - the id of the movie to find
-* @returns {object} - only one object
+* @author Cristina Mateo
+* @method manage404 
+* @param res - the response, in this case, returns a status(404).
+* @exports manage404
 */
-const getMovieByID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=1b1d8ac19d2157bc278dad11d08b1894`);
-    let singleMovieDtl = await response.json()
-    return singleMovieDtl
-};
 
-/** 
-* @author Antonio Mangado
-* @function getCrewInfoByID - fetches staff information from the movie API by ID. 
-* @async
-* @param {number} id - the id of the movie to find the staff from.
-* @returns {array} - an array with two objects: crew and cast
-*/
-const getCrewInfobyID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?&amp;api_key=03ce75d14fd1010ba46c32378b9f079a`)
-    let crewDetails = await response.json();
-    return crewDetails
-};
+const manage404 =  (req,res) => {
+    res.status(404).json({
+        msj:"404 not found", 
+        img:"https://http.cat/images/404.jpg"});
+}
 
+module.exports = manage404
 
-
-module.exports = {
-    getMovieDetails,
-    getMovieByID,
-    getCrewInfobyID,
-}</code></pre>
+//</code></pre>
         </article>
     </section>
 

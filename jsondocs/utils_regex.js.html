@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/fetch.js</title>
+    <title>JSDoc: Source: utils/regex.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/fetch.js</h1>
+    <h1 class="page-title">Source: utils/regex.js</h1>
 
     
 
@@ -28,51 +28,35 @@
         <article>
             <pre class="prettyprint source linenums"><code>/** 
 * @author Antonio Mangado
-* @function getMovieDetails - fetches data from the movie API by movie title.
-* @async
-* @param {string} title - the title of the movie to find
-* @returns {object} - One or several objects with the details of movies found
+* @method validateEmail - validates email
+* @param req - email
+* @return {boolean} - true or false
+* @exports validateEmail
 */
-const getMovieDetails = async (title) => {
-    let response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${title}&amp;api_key=1b1d8ac19d2157bc278dad11d08b1894`); //{} o [{},{},{},{}]
-    let movieDetails = await response.json(); //{} o [{},{},{},{}] 
-    return movieDetails.results
-};
-
-
-/** 
-* @author Antonio Mangado
-* @function getMovieByID - fetches data from the movie API by ID. Returns extra information from getMovieDetails
-* @async
-* @param {number} id - the id of the movie to find
-* @returns {object} - only one object
-*/
-const getMovieByID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=1b1d8ac19d2157bc278dad11d08b1894`);
-    let singleMovieDtl = await response.json()
-    return singleMovieDtl
+const validateEmail = (email) => {
+    const regexEmail = /^(([^&lt;>()[\]\\.,;:\s@"]+(\.[^&lt;>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return regexEmail.test(email.toLowerCase())
 };
 
 /** 
 * @author Antonio Mangado
-* @function getCrewInfoByID - fetches staff information from the movie API by ID. 
-* @async
-* @param {number} id - the id of the movie to find the staff from.
-* @returns {array} - an array with two objects: crew and cast
+* @method validatePassword - validates password
+* @param req - password
+* @return {boolean} - true or false
+* @exports validatePassword
 */
-const getCrewInfobyID = async (id) => {
-    let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?&amp;api_key=03ce75d14fd1010ba46c32378b9f079a`)
-    let crewDetails = await response.json();
-    return crewDetails
+// Must contain lowercase, uppercase, number, special character and more than 8 characters => Hol@1234
+const validatePassword = (password) => {
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&amp;\*\_\-])(?=.{8,})/
+    return regexPassword.test(password)
 };
 
+const regex = {
+    validateEmail,
+    validatePassword
+};
 
-
-module.exports = {
-    getMovieDetails,
-    getMovieByID,
-    getCrewInfobyID,
-}</code></pre>
+module.exports = regex;</code></pre>
         </article>
     </section>
 
